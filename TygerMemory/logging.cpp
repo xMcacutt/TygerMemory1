@@ -2,18 +2,18 @@
 #include "logging.h"
 #include <mutex>
 
-logging& logging::getInstance()
+Logging& Logging::getInstance()
 {
-    static logging instance;
+    static Logging instance;
     return instance;
 }
 
-void logging::setLogger(std::function<void(LogLevel, const std::string&)> logger)
+void Logging::setLogger(std::function<void(LogLevel, const std::string&)> logger)
 {
 	logger_ = logger;
 }
 
-void logging::log(LogLevel level, const std::string& message) {
+void Logging::log(LogLevel level, const std::string& message) {
     std::lock_guard<std::mutex> lock(mutex_); // Ensure thread safety
     if (logger_) {
         logger_(level, message);

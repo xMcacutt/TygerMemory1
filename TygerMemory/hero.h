@@ -1,11 +1,15 @@
 #pragma once
 #include "HeroState.h"
+#include <variant>
+#include "vector3f.h"
 
-class hero
+class Hero
 {
 public:
-	static void setHeroState(HeroState state);
-	static void setHeroState(BullState state);
-	static int getHeroState();
+	static void setState(int state);
+	static int getState();
+	static Vector3f getPosition();
+	static void setPosition(Vector3f coords);
+	static bool isBull();
 };
 

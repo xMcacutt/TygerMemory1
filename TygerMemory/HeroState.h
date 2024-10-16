@@ -1,5 +1,6 @@
 #pragma once
-enum class HeroState
+
+enum class TyState
 {
     None = 0,
     Biting = 1, // include super bite charge and release
