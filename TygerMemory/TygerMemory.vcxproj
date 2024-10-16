@@ -142,7 +142,7 @@
     <ClInclude Include="core.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="hero.h" />
-    <ClInclude Include="HeroState.h" />
+    <ClInclude Include="herostate.h" />
     <ClInclude Include="logging.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

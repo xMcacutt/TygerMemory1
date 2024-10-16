@@ -27,7 +27,10 @@
     <ClInclude Include="hero.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HeroState.h">
+    <ClInclude Include="herostate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="logging.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -42,6 +45,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="hero.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logging.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
