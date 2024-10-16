@@ -24,13 +24,13 @@
     <ClInclude Include="core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hero.h">
+    <ClInclude Include="logging.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="herostate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="logging.h">
+    <ClInclude Include="hero.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
