@@ -67,5 +67,11 @@ public:
         return false;
     }
 
+    template <typename T>
+    static bool UnprotectMemory(LPVOID address) {
+        DWORD oldProtect;
+        return VirtualProtectEx(hProcess, address, sizeof(T), PAGE_EXECUTE_READWRITE, &oldProtect);
+    }
+
     static bool tryWriteMemory(uintptr_t address, bool addBase, const std::vector<char>& bytes);
 };

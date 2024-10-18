@@ -76,6 +76,3 @@ bool Core::tryWriteMemory(uintptr_t address, bool addBase, const std::vector<cha
         return bytesWritten == bytes.size();
     return false;
 }
-
-
-
