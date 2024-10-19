@@ -11,68 +11,118 @@ uintptr_t Core::moduleBase = 0;
 
 bool Core::initialize(HWND hWnd, std::function<void(LogLevel, const std::string&)> loggerFunction)
 {
-    Logging::getInstance().setLogger(loggerFunction);
-    Logging::getInstance().log(LogLevel::INFO, "TygerMemory Initializing...");
+	Logging::getInstance().setLogger(loggerFunction);
+	Logging::getInstance().log(LogLevel::INFO, "TygerMemory Initializing...");
 
-    GetWindowThreadProcessId(hWnd, &processId);
-    if (processId == 0) {
-        
-        Logging::getInstance().log(LogLevel::ERR, "Failed to get process id.");
-        return false;
-    };
+	GetWindowThreadProcessId(hWnd, &processId);
+	if (processId == 0) {
+		Logging::getInstance().log(LogLevel::ERR, "Failed to get process id.");
+		return false;
+	};
 
-    hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, processId);
-    if (hProcess == nullptr) {
-        Logging::getInstance().log(LogLevel::ERR, "Failed to open process.");
-        return false;
-    }
+	hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, processId);
+	if (hProcess == nullptr) {
+		Logging::getInstance().log(LogLevel::ERR, "Failed to open process.");
+		return false;
+	}
 
-    std::string moduleName = "TY.exe";
-    moduleBase = getModuleBaseAddress(hProcess, moduleName);
-    if (moduleBase == 0) {
-        Logging::getInstance().log(LogLevel::ERR, "Failed to find TY.exe module.");
-        return false;
-    }
+	std::string moduleName = "TY.exe";
+	moduleBase = getModuleBaseAddress(hProcess, moduleName);
+	if (moduleBase == 0) {
+		Logging::getInstance().log(LogLevel::ERR, "Failed to find TY.exe module.");
+		return false;
+	}
 
-    Logging::getInstance().log(LogLevel::INFO, "TygerMemory Initialized.");
-    return true;
+	Logging::getInstance().log(LogLevel::INFO, "TygerMemory Initialized.");
+	return true;
 }
 
 uintptr_t Core::getModuleBaseAddress(HANDLE hProcess, std::string& moduleName) {
-    HMODULE hMods[1024];
-    DWORD cbNeeded;
-    if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded)) {
-        for (unsigned int i = 0; i < (cbNeeded / sizeof(HMODULE)); i++) {
-            char szModName[MAX_PATH];
-            if (GetModuleFileNameExA(hProcess, hMods[i], szModName, sizeof(szModName) / sizeof(char))) {
-                if (moduleName == szModName || moduleName == szModName + std::string(".exe")) {
-                    return reinterpret_cast<uintptr_t>(hMods[i]);
-                }
-            }
-        }
-    }
-    return 0;
+	HMODULE hMods[1024];
+	DWORD cbNeeded;
+	if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded)) {
+		for (unsigned int i = 0; i < (cbNeeded / sizeof(HMODULE)); i++) {
+			char szModName[MAX_PATH];
+			if (GetModuleFileNameExA(hProcess, hMods[i], szModName, sizeof(szModName) / sizeof(char))) {
+				if (moduleName == szModName || moduleName == szModName + std::string(".exe")) {
+					return reinterpret_cast<uintptr_t>(hMods[i]);
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+std::string Core::tryReadString(uintptr_t address, bool addBase, size_t length, bool& success) {
+	std::vector<char> buffer(length);
+	SIZE_T bytesRead = 0;
+	try {
+		if (addBase)
+			address += moduleBase;
+		if (ReadProcessMemory(hProcess, reinterpret_cast<LPCVOID>(address), buffer.data(), length, &bytesRead)) {
+			success = (bytesRead == length);
+			if (success && std::find(buffer.begin(), buffer.end(), '\0') != buffer.end())
+				return std::string(buffer.begin(), std::find(buffer.begin(), buffer.end(), '\0'));
+			else {
+				success = false;
+				return std::string();
+			}
+		}
+		else
+			success = false;
+	}
+	catch (const std::exception& ex) {
+		Logging::getInstance().log(LogLevel::ERR, ex.what());
+		success = false;
+	}
+	return std::string(); // Return empty string on failure
+}
+
+std::string Core::tryReadString(uintptr_t address, bool addBase, size_t length) {
+	std::vector<char> buffer(length);
+	bool success;
+	SIZE_T bytesRead = 0;
+	try {
+		if (addBase)
+			address += moduleBase;
+		if (ReadProcessMemory(hProcess, reinterpret_cast<LPCVOID>(address), buffer.data(), length, &bytesRead)) {
+			success = (bytesRead == length);
+			if (success && std::find(buffer.begin(), buffer.end(), '\0') != buffer.end())
+				return std::string(buffer.begin(), std::find(buffer.begin(), buffer.end(), '\0'));
+			else {
+				success = false;
+				return std::string();
+			}
+		}
+		else
+			success = false;
+	}
+	catch (const std::exception& ex) {
+		Logging::getInstance().log(LogLevel::ERR, ex.what());
+		success = false;
+	}
+	return std::string(); // Return empty string on failure
 }
 
 uintptr_t Core::getPointerAddress(uintptr_t baseAddr, const std::vector<int>& offsets)
 {
-    uintptr_t currentAddr = baseAddr;
-    uintptr_t result;
-    bool success;
-    for (int iOffset = 0; iOffset < offsets.size(); iOffset++) {
-        result = tryReadMemory<bool>(currentAddr, iOffset == 0, success);
-        if (!success)
-            return 0;
-        currentAddr = result + offsets[iOffset];
-    }
-    return currentAddr;
+	uintptr_t currentAddr = baseAddr;
+	uintptr_t result;
+	bool success;
+	for (int iOffset = 0; iOffset < offsets.size(); iOffset++) {
+		result = tryReadMemory<bool>(currentAddr, iOffset == 0, success);
+		if (!success)
+			return 0;
+		currentAddr = result + offsets[iOffset];
+	}
+	return currentAddr;
 }
 
 bool Core::tryWriteMemory(uintptr_t address, bool addBase, const std::vector<char>& bytes) {
-    if (addBase)
-        address += moduleBase;
-    SIZE_T bytesWritten = 0;
-    if (WriteProcessMemory(hProcess, reinterpret_cast<LPVOID>(address), bytes.data(), bytes.size(), &bytesWritten))
-        return bytesWritten == bytes.size();
-    return false;
+	if (addBase)
+		address += moduleBase;
+	SIZE_T bytesWritten = 0;
+	if (WriteProcessMemory(hProcess, reinterpret_cast<LPVOID>(address), bytes.data(), bytes.size(), &bytesWritten))
+		return bytesWritten == bytes.size();
+	return false;
 }

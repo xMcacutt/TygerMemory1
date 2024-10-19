@@ -78,6 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -142,6 +143,8 @@
   <ItemGroup>
     <ClInclude Include="core.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="gameobject.h" />
+    <ClInclude Include="goldencog.h" />
     <ClInclude Include="hero.h" />
     <ClInclude Include="herostate.h" />
     <ClInclude Include="level.h" />
@@ -152,6 +155,8 @@
   <ItemGroup>
     <ClCompile Include="core.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="gameobject.cpp" />
+    <ClCompile Include="goldencog.cpp" />
     <ClCompile Include="hero.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="logging.cpp" />

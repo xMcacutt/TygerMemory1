@@ -9,9 +9,11 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Source Files\gameobject">
+      <UniqueIdentifier>{63e35342-42a0-471b-b9a6-6d30cc5f9caf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gameobject">
+      <UniqueIdentifier>{14b6ed62-dbc7-438b-88c8-4f5414b79b84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +41,12 @@
     <ClInclude Include="vector3f.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gameobject.h">
+      <Filter>Header Files\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="goldencog.h">
+      <Filter>Header Files\gameobject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -61,6 +69,12 @@
     </ClCompile>
     <ClCompile Include="vector3f.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameobject.cpp">
+      <Filter>Source Files\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="goldencog.cpp">
+      <Filter>Source Files\gameobject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

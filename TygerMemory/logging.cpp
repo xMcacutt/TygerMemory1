@@ -4,8 +4,8 @@
 
 Logging& Logging::getInstance()
 {
-    static Logging instance;
-    return instance;
+	static Logging instance;
+	return instance;
 }
 
 void Logging::setLogger(std::function<void(LogLevel, const std::string&)> logger)
@@ -14,8 +14,8 @@ void Logging::setLogger(std::function<void(LogLevel, const std::string&)> logger
 }
 
 void Logging::log(LogLevel level, const std::string& message) {
-    std::lock_guard<std::mutex> lock(mutex_); // Ensure thread safety
-    if (logger_) {
-        logger_(level, message);
-    }
+	std::lock_guard<std::mutex> lock(mutex_); // Ensure thread safety
+	if (logger_) {
+		logger_(level, message);
+	}
 }
