@@ -141,9 +141,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="camerastate.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="gameobject.h" />
+    <ClInclude Include="gamestate.h" />
     <ClInclude Include="goldencog.h" />
     <ClInclude Include="hero.h" />
     <ClInclude Include="herostate.h" />
@@ -153,9 +156,11 @@
     <ClInclude Include="vector3f.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="core.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="gameobject.cpp" />
+    <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="goldencog.cpp" />
     <ClCompile Include="hero.cpp" />
     <ClCompile Include="level.cpp" />
