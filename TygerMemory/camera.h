@@ -2,6 +2,12 @@
 #include "camerastate.h"
 #include "vector3f.h"
 
+enum class CameraDistanceLevel {
+	LOW,
+	MID,
+	HIGH
+};
+
 class Camera
 {
 public:
@@ -16,12 +22,7 @@ public:
 	static float getCameraDistance();
 	static void setCameraDistance(float distance);
 	static void setCameraDistanceValue(CameraDistanceLevel level, float distance);
-};
-
-enum CameraDistanceLevel {
-	LOW,
-	MID,
-	HIGH
+	static void setCameraGoof(float value);
 };
 
 

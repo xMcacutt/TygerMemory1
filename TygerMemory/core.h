@@ -11,9 +11,9 @@ class Core
 private:
 	static DWORD processId;
 	static HANDLE hProcess;
-	static uintptr_t moduleBase;
 	static uintptr_t getModuleBaseAddress(HANDLE hProcess, std::string& moduleName);
 public:
+	static uintptr_t moduleBase;
 	static bool initialize(HWND hWnd, std::function<void(LogLevel, const std::string&)> loggerFunction);
 	static uintptr_t getPointerAddress(uintptr_t baseAddress, const std::vector<int>& offsets);
 	static std::string tryReadString(uintptr_t address, bool addBase, size_t length, bool& success);
@@ -59,7 +59,7 @@ public:
 	}
 
 	template <typename T>
-	static bool tryWriteMemory(uintptr_t address, bool addBase, T& value) {
+	static bool tryWriteMemory(uintptr_t address, bool addBase, T value) {
 		if (addBase)
 			address += moduleBase;
 		SIZE_T bytesWritten = 0;

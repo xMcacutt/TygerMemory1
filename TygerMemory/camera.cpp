@@ -58,3 +58,7 @@ void Camera::setCameraDistance(float distance)
 void Camera::setCameraDistanceValue(CameraDistanceLevel level, float distance) {
 	Core::tryWriteMemory<float>(0x27E7E8 + 0x8 * (int)level, true, distance);
 }
+
+void Camera::setCameraGoof(float value = 1.0) {
+	Core::tryWriteMemory<float>(0x240488, true, value);
+}
