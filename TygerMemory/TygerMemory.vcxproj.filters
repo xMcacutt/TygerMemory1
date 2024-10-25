@@ -15,6 +15,12 @@
     <Filter Include="Header Files\gameobject">
       <UniqueIdentifier>{14b6ed62-dbc7-438b-88c8-4f5414b79b84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\savedata">
+      <UniqueIdentifier>{102ec8a5-6f38-4586-b97a-4d7cc7a0472a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\savedata">
+      <UniqueIdentifier>{5c5feb7b-2edc-4e7d-b8ff-be23f4888a0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -56,6 +62,15 @@
     <ClInclude Include="camerastate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="instance.h">
+      <Filter>Header Files\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="savedata.h">
+      <Filter>Header Files\savedata</Filter>
+    </ClInclude>
+    <ClInclude Include="leveldata.h">
+      <Filter>Header Files\savedata</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -91,5 +106,19 @@
     <ClCompile Include="camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="instance.cpp">
+      <Filter>Source Files\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="savedata.cpp">
+      <Filter>Source Files\savedata</Filter>
+    </ClCompile>
+    <ClCompile Include="leveldata.cpp">
+      <Filter>Source Files\savedata</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Available Functionst.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

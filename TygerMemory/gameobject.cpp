@@ -2,39 +2,31 @@
 #include "gameobject.h"
 #include "core.h"
 #include "logging.h"
+#include "vector3f.h"
+#include "GameObject.h"
 
-GameObject::GameObject(std::string name, uintptr_t addr) : objectName(name), baseAddr(addr) {}
+GameObject::GameObject(uintptr_t addr) : address(addr) {}
 
-uintptr_t GameObject::getFirst()
-{
-	return Core::tryReadMemory<uintptr_t>(baseAddr + 0x48, true);
+int GameObject::getCurrentCount() {
+    return Core::tryReadMemory<int>(address + 0x44, true);
 }
 
-int GameObject::getCount()
-{
-	return Core::tryReadMemory<int>(baseAddr + 0x44, true);
+GameObject GameObject::getObject(ObjectType type) {
+    return GameObject(Core::moduleBase + (int)type);
 }
 
-uintptr_t GameObject::getByIndex(int index)
-{
-	int count = getCount();
-
-	if (index < 0 || index >= count) {
-		Logging::getInstance().log(LogLevel::WARN, "Invalid index specified for gameobject: " + objectName);
-		return 0;
-	}
-
-	auto currentAddr = getFirst();
-
-	for (int i = 0; i < index; ++i)
-		currentAddr = Core::tryReadMemory<uintptr_t>(currentAddr + 0x30, false);
-
-	return currentAddr;
+Instance GameObject::getFirst() {
+    return Instance(Core::tryReadMemory<uintptr_t>(address + 0x48, true), 0, this);
 }
 
-std::string GameObject::getFullName()
-{
-	return Core::tryReadString(baseAddr + 0x20, true, 0x20);
+Instance GameObject::getByIndex(int index) {
+    if (index >= getCurrentCount()) {
+        Logging::getInstance().log(LogLevel::WARN, "Attempted to access object which is not loaded.");
+        return Instance(0, -1, nullptr);
+    }
+    auto addr = Core::tryReadMemory<uintptr_t>(address + 0x48, true);
+    for (int i = 0; i < index; i++) {
+        addr = Core::tryReadMemory<uintptr_t>(addr + 0x34, false);
+    }
+    return Instance(addr, index, this);
 }
-
-GameObject::~GameObject() {}

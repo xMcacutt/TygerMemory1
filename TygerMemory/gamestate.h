@@ -53,7 +53,7 @@ public:
 	/// </summary>
 	/// <param name='message'>Message to be displayed.</param>
 	/// <param name='seconds'>Time for the message to be displayed.</param>
-	static void displayInGameMessage(std::string message, int seconds = 0);
+	static void displayInGameMessage(std::string message, int seconds);
 
 	static void setCollectibleLinesVisibility(bool status);
 	static bool getCollectibleLineVisibility();
