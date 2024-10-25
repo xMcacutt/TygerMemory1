@@ -68,9 +68,6 @@
     <ClInclude Include="savedata.h">
       <Filter>Header Files\savedata</Filter>
     </ClInclude>
-    <ClInclude Include="leveldata.h">
-      <Filter>Header Files\savedata</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -110,9 +107,6 @@
       <Filter>Source Files\gameobject</Filter>
     </ClCompile>
     <ClCompile Include="savedata.cpp">
-      <Filter>Source Files\savedata</Filter>
-    </ClCompile>
-    <ClCompile Include="leveldata.cpp">
       <Filter>Source Files\savedata</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,6 +1,5 @@
 #pragma once
 #include "level.h"
-#include "leveldata.h"
 
 class LevelData;
 
@@ -24,101 +23,120 @@ enum class FMV {
 	PlatypusTalisman,
 };
 
-enum class HubFlag {
-	AZoneMachineHidden,
-	AZoneBossActivated,
-	IceWallDestroyed,
-	BZoneMachineHidden, 
-	BZoneBossActivated,
-	FlamingLogsDestroyed,
-	CZoneMachineHidden,
-	CZoneBossActivated,
-	SmashRockDestroyed,
-	DZoneMachineHidden,
-	DZoneBossActivated,
-	GeneratorActivated
-};
-
-enum class ProgressFlag {
-	GotTalismanA,
-	GotTalismanB,
-	GotTalismanC,
-	GotTalismanD,
-	GotTalismanE,
-	AZoneBossComplete,
-	BZoneBossComplete,
-	CZoneBossComplete,
-	DZoneBossComplete,
-	EZoneBossComplete
-};
-
 enum class TyAttribute {
-	GotExtraHealth = 2,
 	LearntToSwim = 0,
 	LearntToDive = 1,
-	GotAquarang = 13,
-	GotBoomerang = 4,
+	GotExtraHealth = 2,
 	GotSecondRang = 3,
-	GotFlamerang = 6,
+	GotBoomerang = 4,
 	GotFrostyrang = 5,
-	GotZappyrang = 12,
-	GotZoomerang = 10,
-	GotMultirang = 14,
-	GotInfrarang = 11,
-	GotMegarang = 9,
+	GotFlamerang = 6,
 	GotKaboomerang = 7,
+	GotDoomerang = 8,
+	GotMegarang = 9,
+	GotZoomerang = 10,
+	GotInfrarang = 11,
+	GotZappyrang = 12,
+	GotAquarang = 13,
+	GotMultirang = 14,
 	GotChronorang = 15,
-	GotDoomerang = 8
 };
 
 enum class Rang {
-	GotAquarang = 9,
-	GotBoomerang = 0,
-	GotFlamerang = 2,
-	GotFrostyrang = 1,
-	GotZappyrang = 8,
-	GotZoomerang = 6,
-	GotMultirang = 10,
-	GotInfrarang = 7,
-	GotMegarang = 5,
-	GotKaboomerang = 3,
-	GotChronorang = 11,
-	GotDoomerang = 4
+	Aquarang = 9,
+	Boomerang = 0,
+	Flamerang = 2,
+	Frostyrang = 1,
+	Zappyrang = 8,
+	Zoomerang = 6,
+	Multirang = 10,
+	Infrarang = 7,
+	Megarang = 5,
+	Kaboomerang = 3,
+	Chronorang = 11,
+	Doomerang = 4
+};
+
+typedef struct LevelData {
+	char TimesEntered;
+	char Opals[0x25];
+	char Unk;
+	bool ThunderEggs[0x8];
+	bool GoldenCogs[0xA];
+	char Bilbies[0x5];
+	int TimeAttackBestSeconds;
+	int TimeAttackLastSeconds;
+	short TriggerSaves[0x14];
+};
+
+typedef struct ZoneData {
+	bool Unlocked;
+	bool Complete;
+	bool BossActive;
+};
+
+typedef struct AttributeData {
+	bool LearntToSwim;
+	bool LearntToDive;
+	bool GotExtraHealth;
+	bool GotSecondRang;
+	bool GotBoomerang;
+	bool GotFrostyrang;
+	bool GotFlamerang;
+	bool GotKaboomerang;
+	bool GotDoomerang;
+	bool GotMegarang;
+	bool GotZoomerang;
+	bool GotInfrarang;
+	bool GotZappyrang;
+	bool GotAquarang;
+	bool GotMultirang;
+	bool GotChronorang;
+};
+
+typedef struct SaveDataStruct {
+	int Size;
+	int Magic;
+	LevelCode SavedLevel;
+	char PercentageCompletion;
+	char ThunderEggCount;
+	bool IsHardcore;
+	bool IsDevMode;
+	LevelData LevelData[24];
+	int Unk;
+	ZoneData ZoneData[6];
+	short Unk2;
+	LevelCode CurrentLevel;
+	LevelCode PreviousLevel;
+	Zone CurrentZone;
+	Rang CurrentRang;
+	AttributeData AttributeData;
+	bool Talismans[5];
+	bool TalismansPlaced[5];
+	short Unk3;
+	short Lives;
+	char PictureFrames[0x41];
+	char FmvsWatched;
+	int PlayTimeSeconds;
+	int EnemiesBitten;
+	int EnemiesZapped;
+	int EnemiesFlamed;
+	int CricketBatsBurnt;
+	bool CheatsUsed;
+	bool CheatsUsed2;
+	bool Unk4;
+	bool Unk5;
+	int SkinId;
 };
 
 class SaveData {
 protected:
     uintptr_t baseAddress; 
 public:
-	SaveData(uintptr_t baseAddress);
-    static SaveData getData();
-	LevelData getLevelData(LevelCode levelCode);
-	void setHubFlag(HubFlag flag, bool value);
-	bool getHubFlag(HubFlag flag);
-	void setProgressFlag(ProgressFlag flag, bool value);
-	bool getProgressFlag(ProgressFlag flag);
-	void setTyAttribute(TyAttribute flag, bool value);
-	bool getTyAttribute(TyAttribute flag);
+	SaveDataStruct* Data = new ((void*)(*(int*)(Core::moduleBase + 0x288730)))SaveDataStruct;
 	void setFmvWatched(FMV fmv, bool value);
 	bool getFmvWatched(FMV fmv);
-	LevelCode getCurrentLevel();
-	LevelCode getPreviousLevel();
-	LevelCode getSavedLevel();
-	int getPercentageCompletion();
-	int getThunderEggCount();
-	bool isHardcore();
-	Zone getSavedZone();
-	Rang getCurrentRang();
-	int getLifeCount();
 	// bool getPictureFrame(int index);
 	// void setPictureFrame(int index, bool value);
-	int getGameTimeSeconds();
-	void setGameTimeSeconds(int seconds);
-	int getEnemiesBitten();
-	int getEnemiesZapped();
-	int getEnemiesFlamed();
-	int getCricketBatsBurnt();
-	bool cheatsUsed();
-	int getSkinId();
 };
 
