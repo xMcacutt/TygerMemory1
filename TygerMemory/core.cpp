@@ -4,6 +4,7 @@
 #include <psapi.h>
 #include <windows.h>
 #include "logging.h"
+#include <tchar.h>
 
 DWORD Core::processId = 0;
 HANDLE Core::hProcess = 0;
@@ -26,10 +27,9 @@ bool Core::initialize(HWND hWnd, std::function<void(LogLevel, const std::string&
 		return false;
 	}
 
-	std::string moduleName = "TY.exe";
-	moduleBase = getModuleBaseAddress(hProcess, moduleName);
+	moduleBase = getModuleBaseAddress(hProcess);
 	if (moduleBase == 0) {
-		Logging::getInstance().log(LogLevel::ERR, "Failed to find TY.exe module.");
+		Logging::getInstance().log(LogLevel::ERR, "Failed to find .exe module.");
 		return false;
 	}
 
@@ -37,92 +37,32 @@ bool Core::initialize(HWND hWnd, std::function<void(LogLevel, const std::string&
 	return true;
 }
 
-uintptr_t Core::getModuleBaseAddress(HANDLE hProcess, std::string& moduleName) {
-	HMODULE hMods[1024];
+DWORD getModuleBaseAddress(HANDLE hProcess) {
+	HMODULE hModules[1024];
 	DWORD cbNeeded;
-	if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded)) {
+
+	if (EnumProcessModules(hProcess, hModules, sizeof(hModules), &cbNeeded)) {
 		for (unsigned int i = 0; i < (cbNeeded / sizeof(HMODULE)); i++) {
-			char szModName[MAX_PATH];
-			if (GetModuleFileNameExA(hProcess, hMods[i], szModName, sizeof(szModName) / sizeof(char))) {
-				if (moduleName == szModName || moduleName == szModName + std::string(".exe")) {
-					return reinterpret_cast<uintptr_t>(hMods[i]);
+			TCHAR szModName[MAX_PATH];
+			if (GetModuleFileNameEx(hProcess, hModules[i], szModName, sizeof(szModName) / sizeof(TCHAR))) {
+				if (_tcslen(szModName) > 4 && _tcscmp(szModName + _tcslen(szModName) - 4, _T(".exe")) == 0) {
+					return (DWORD)hModules[i]; 
 				}
 			}
 		}
 	}
-	return 0;
-}
-
-std::string Core::tryReadString(uintptr_t address, bool addBase, size_t length, bool& success) {
-	std::vector<char> buffer(length);
-	SIZE_T bytesRead = 0;
-	try {
-		if (addBase)
-			address += moduleBase;
-		if (ReadProcessMemory(hProcess, reinterpret_cast<LPCVOID>(address), buffer.data(), length, &bytesRead)) {
-			success = (bytesRead == length);
-			if (success && std::find(buffer.begin(), buffer.end(), '\0') != buffer.end())
-				return std::string(buffer.begin(), std::find(buffer.begin(), buffer.end(), '\0'));
-			else {
-				success = false;
-				return std::string();
-			}
-		}
-		else
-			success = false;
-	}
-	catch (const std::exception& ex) {
-		Logging::getInstance().log(LogLevel::ERR, ex.what());
-		success = false;
-	}
-	return std::string(); // Return empty string on failure
-}
-
-std::string Core::tryReadString(uintptr_t address, bool addBase, size_t length) {
-	std::vector<char> buffer(length);
-	bool success;
-	SIZE_T bytesRead = 0;
-	try {
-		if (addBase)
-			address += moduleBase;
-		if (ReadProcessMemory(hProcess, reinterpret_cast<LPCVOID>(address), buffer.data(), length, &bytesRead)) {
-			success = (bytesRead == length);
-			if (success && std::find(buffer.begin(), buffer.end(), '\0') != buffer.end())
-				return std::string(buffer.begin(), std::find(buffer.begin(), buffer.end(), '\0'));
-			else {
-				success = false;
-				return std::string();
-			}
-		}
-		else
-			success = false;
-	}
-	catch (const std::exception& ex) {
-		Logging::getInstance().log(LogLevel::ERR, ex.what());
-		success = false;
-	}
-	return std::string(); // Return empty string on failure
+	return 0; 
 }
 
 uintptr_t Core::getPointerAddress(uintptr_t baseAddr, const std::vector<int>& offsets)
 {
 	uintptr_t currentAddr = baseAddr;
-	uintptr_t result;
-	bool success;
-	for (int iOffset = 0; iOffset < offsets.size(); iOffset++) {
-		result = tryReadMemory<bool>(currentAddr, iOffset == 0, success);
-		if (!success)
-			return 0;
-		currentAddr = result + offsets[iOffset];
+	for (size_t i = 0; i < offsets.size(); i++) {
+		uintptr_t* pointer = reinterpret_cast<uintptr_t*>(currentAddr);
+		currentAddr = *pointer;
+		if (currentAddr == 0)
+			return 0; 
+		currentAddr += offsets[i];
 	}
 	return currentAddr;
-}
-
-bool Core::tryWriteMemory(uintptr_t address, bool addBase, const std::vector<char>& bytes) {
-	if (addBase)
-		address += moduleBase;
-	SIZE_T bytesWritten = 0;
-	if (WriteProcessMemory(hProcess, reinterpret_cast<LPVOID>(address), bytes.data(), bytes.size(), &bytesWritten))
-		return bytesWritten == bytes.size();
-	return false;
 }

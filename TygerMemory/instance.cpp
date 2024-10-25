@@ -26,11 +26,11 @@ Instance Instance::getPrevious()
 }
 
 void Instance::setPosition(Vector3f position) {
-    auto addr = Core::tryReadMemory<uintptr_t>(address + 0x8, false);
-    Core::tryWriteMemory<Vector3f>(addr + 0x74, false, position);
+    auto addr = *(uintptr_t*)(address + 0x8);
+    *(Vector3f*)(addr + 0x74) = position;
 }
 
 Vector3f Instance::getPosition() {
-    auto addr = Core::tryReadMemory<uintptr_t>(address + 0x8, false);
-    return Core::tryReadMemory<Vector3f>(addr + 0x74, false);
+    auto addr = *(uintptr_t*)(address + 0x8);
+    return *(Vector3f*)(addr + 0x74);
 }

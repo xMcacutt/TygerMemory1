@@ -8,7 +8,7 @@
 GameObject::GameObject(uintptr_t addr) : address(addr) {}
 
 int GameObject::getCurrentCount() {
-    return Core::tryReadMemory<int>(address + 0x44, true);
+    return *(int*)(Core::moduleBase + address + 0x44);
 }
 
 GameObject GameObject::getObject(ObjectType type) {
@@ -16,7 +16,7 @@ GameObject GameObject::getObject(ObjectType type) {
 }
 
 Instance GameObject::getFirst() {
-    return Instance(Core::tryReadMemory<uintptr_t>(address + 0x48, true), 0, this);
+    return Instance(*(uintptr_t*)(Core::moduleBase + address + 0x48), 0, this);
 }
 
 Instance GameObject::getByIndex(int index) {
@@ -24,9 +24,8 @@ Instance GameObject::getByIndex(int index) {
         Logging::getInstance().log(LogLevel::WARN, "Attempted to access object which is not loaded.");
         return Instance(0, -1, nullptr);
     }
-    auto addr = Core::tryReadMemory<uintptr_t>(address + 0x48, true);
-    for (int i = 0; i < index; i++) {
-        addr = Core::tryReadMemory<uintptr_t>(addr + 0x34, false);
-    }
+    auto addr = *(uintptr_t*)(Core::moduleBase + address + 0x48);
+    for (int i = 0; i < index; i++)
+        addr = *(uintptr_t*)(addr + 0x34);
     return Instance(addr, index, this);
 }

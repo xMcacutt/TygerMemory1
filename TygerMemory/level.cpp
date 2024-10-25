@@ -4,13 +4,13 @@
 
 LevelCode Level::getCurrentLevel()
 {
-    return (LevelCode)Core::tryReadMemory<int>(0x280594, true);
+    return *(LevelCode*)(Core::moduleBase + 0x280594);
 }
 
 void Level::changeLevel(LevelCode level)
 {
-    Core::tryWriteMemory<float>(0x264248, true, 0.01f);
-    Core::tryWriteMemory<char>(0x286C54, true, { 0x1 });
-    Core::tryWriteMemory<int>(0x289028, true, (int)level);
-    Core::tryWriteMemory<char>(0x289050, true, { 0x1 });
+    *(float*)(Core::moduleBase + 0x264248) = 0.01f;
+    *(char*)(Core::moduleBase + 0x286C54) = (char)0x1;
+    *(int*)(Core::moduleBase + 0x289028) = (int)level;
+    *(char*)(Core::moduleBase + 0x289050) = (char)0x1;
 }
