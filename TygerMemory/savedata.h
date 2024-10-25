@@ -1,5 +1,6 @@
 #pragma once
 #include "level.h"
+#include "core.h"
 
 class LevelData;
 

@@ -37,7 +37,7 @@ bool Core::initialize(HWND hWnd, std::function<void(LogLevel, const std::string&
 	return true;
 }
 
-DWORD getModuleBaseAddress(HANDLE hProcess) {
+uintptr_t Core::getModuleBaseAddress(HANDLE hProcess) {
 	HMODULE hModules[1024];
 	DWORD cbNeeded;
 
