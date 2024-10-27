@@ -1,4 +1,9 @@
 #pragma once
+#ifdef TYGERMEM_EXPORTS
+#define TYGERMEM __declspec(dllexport)
+#else
+#define TYGERMEM __declspec(dllimport)
+#endif
 #include "pch.h"
 #include <string>
 
@@ -40,7 +45,7 @@ enum class PauseMenuScreen {
 	UNKNOWN = 21
 };
 
-class GameState
+class TYGERMEM GameState
 {
 public:
 	static bool onMainMenu();

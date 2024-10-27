@@ -1,10 +1,15 @@
 #pragma once
+#ifdef TYGERMEM_EXPORTS
+#define TYGERMEM __declspec(dllexport)
+#else
+#define TYGERMEM __declspec(dllimport)
+#endif
 
 #include <cstddef>  // For std::size_t
 #include <cstring>  // For memcpy
 #include <cmath>    // For sqrt
 
-class Vector3f {
+class TYGERMEM Vector3f {
 public:
 	float x, y, z;
 

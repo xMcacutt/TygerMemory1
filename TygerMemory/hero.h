@@ -1,9 +1,14 @@
 #pragma once
+#ifdef TYGERMEM_EXPORTS
+#define TYGERMEM __declspec(dllexport)
+#else
+#define TYGERMEM __declspec(dllimport)
+#endif
 #include "HeroState.h"
 #include <variant>
 #include "vector3f.h"
 
-class Hero
+class TYGERMEM Hero
 {
 public:
 	static void setState(int state);

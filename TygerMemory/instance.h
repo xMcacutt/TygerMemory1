@@ -1,9 +1,14 @@
 #pragma once
+#ifdef TYGERMEM_EXPORTS
+#define TYGERMEM __declspec(dllexport)
+#else
+#define TYGERMEM __declspec(dllimport)
+#endif
 #include "vector3f.h"
 
-class GameObject;
+class TYGERMEM GameObject;
 
-class Instance {
+class TYGERMEM Instance {
 protected:
     uintptr_t address;
     int index;

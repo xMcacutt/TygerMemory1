@@ -1,4 +1,9 @@
 #pragma once
+#ifdef TYGERMEM_EXPORTS
+#define TYGERMEM __declspec(dllexport)
+#else
+#define TYGERMEM __declspec(dllimport)
+#endif
 #include <string>
 
 enum class LevelCode {
@@ -28,7 +33,7 @@ enum class LevelCode {
 	E4,
 };
 
-class Level
+class TYGERMEM Level
 {
 public:
 	static LevelCode getCurrentLevel();
