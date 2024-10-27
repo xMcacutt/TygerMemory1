@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "gamestate.h"
 #include "core.h"
+#include <thread>
 
 bool GameState::onMainMenu()
 {
@@ -44,8 +45,8 @@ void GameState::displayInGameMessage(std::string message, int seconds = 0)
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
 
-        *(char*)(Core::moduleBase + 0x286C54, true, (char)0x0);
-        *(char*)(Core::moduleBase + 0x289048, true, (char)0x0);
+        *(char*)(Core::moduleBase + 0x286C54) = (char)0x0;
+        *(char*)(Core::moduleBase + 0x289048) = (char)0x0;
         }).detach();
 }
 
