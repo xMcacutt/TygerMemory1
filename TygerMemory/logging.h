@@ -8,7 +8,6 @@
 
 #include <functional>
 #include <string>
-#include <mutex>
 
 enum class MemLogLevel {
 	INFO,
@@ -20,12 +19,11 @@ using LoggerFunction = void(*)(const std::string&, MemLogLevel);
 
 class TYGERMEM Logging {
 private:
-	Logging() = default; // Private constructor
-	Logging(const Logging&) = delete; // Prevent copying
-	Logging& operator=(const Logging&) = delete; // Prevent assignment
+	Logging() = default;
+	Logging(const Logging&) = delete;
+	Logging& operator=(const Logging&) = delete;
 
-	std::function<void(const std::string&, MemLogLevel)> logger_; // User-defined logger
-	std::mutex mutex_; // For thread safety
+	std::function<void(const std::string&, MemLogLevel)> logger_;
 public:
     static Logging& getInstance();
     void setLogger(std::function<void(const std::string&, MemLogLevel)> logger);

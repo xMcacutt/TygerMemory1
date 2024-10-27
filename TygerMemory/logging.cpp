@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "logging.h"
-#include <mutex>
 
 Logging& Logging::getInstance()
 {
@@ -14,7 +13,6 @@ void Logging::setLogger(std::function<void(const std::string&, MemLogLevel)> log
 }
 
 void Logging::log(const std::string& message, MemLogLevel level) {
-	std::lock_guard<std::mutex> lock(mutex_); // Ensure thread safety
 	if (logger_) {
 		logger_(message, level);
 	}
