@@ -10,12 +10,8 @@
 #include <string>
 #include <functional>
 #include "logging.h"
-//For stuff like DWORD, HANDLE, HWND
-#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
-// Windows Header Files
+#define WIN32_LEAN_AND_MEAN 
 #include <windows.h>
-
-typedef void (*LoggerFunction)(const std::string&, MemLogLevel);
 
 class TYGERMEM Core
 {
