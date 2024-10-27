@@ -10,30 +10,30 @@ DWORD Core::processId = 0;
 HANDLE Core::hProcess = 0;
 uintptr_t Core::moduleBase = 0;
 
-bool Core::initialize(HWND hWnd, std::function<void(LogLevel, const std::string&)> loggerFunction)
+bool Core::initialize(HWND hWnd, std::function<void(const std::string&, MemLogLevel)> loggerFunction)
 {
 	Logging::getInstance().setLogger(loggerFunction);
-	Logging::getInstance().log(LogLevel::INFO, "TygerMemory Initializing...");
+	Logging::getInstance().log("TygerMemory Initializing...");
 
 	GetWindowThreadProcessId(hWnd, &processId);
 	if (processId == 0) {
-		Logging::getInstance().log(LogLevel::ERR, "Failed to get process id.");
+		Logging::getInstance().log("Failed to get process id.", MemLogLevel::ERR);
 		return false;
 	};
 
 	hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, processId);
 	if (hProcess == nullptr) {
-		Logging::getInstance().log(LogLevel::ERR, "Failed to open process.");
+		Logging::getInstance().log("Failed to open process.", MemLogLevel::ERR);
 		return false;
 	}
 
 	moduleBase = getModuleBaseAddress(hProcess);
 	if (moduleBase == 0) {
-		Logging::getInstance().log(LogLevel::ERR, "Failed to find .exe module.");
+		Logging::getInstance().log("Failed to find .exe module.", MemLogLevel::ERR);
 		return false;
 	}
 
-	Logging::getInstance().log(LogLevel::INFO, "TygerMemory Initialized.");
+	Logging::getInstance().log("TygerMemory Initialized.");
 	return true;
 }
 

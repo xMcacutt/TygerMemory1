@@ -10,7 +10,7 @@ Instance Instance::getNext()
 {
     if (index + 1 >= objectData->getCurrentCount())
     {
-        Logging::getInstance().log(LogLevel::WARN, "Attempted to access an object which isn't loaded.");
+        Logging::getInstance().log("Attempted to access an object which isn't loaded.", MemLogLevel::WARN);
         return *this;
     }
     return objectData->getByIndex(index + 1);
@@ -19,7 +19,7 @@ Instance Instance::getNext()
 Instance Instance::getPrevious()
 {
     if (index == 0) {
-        Logging::getInstance().log(LogLevel::WARN, "Attempted to access an object which isn't loaded.");
+        Logging::getInstance().log("Attempted to access an object which isn't loaded.", MemLogLevel::WARN);
         return *this;
     }
     return objectData->getByIndex(index - 1);

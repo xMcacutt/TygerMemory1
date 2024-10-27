@@ -8,14 +8,14 @@ Logging& Logging::getInstance()
 	return instance;
 }
 
-void Logging::setLogger(std::function<void(LogLevel, const std::string&)> logger)
+void Logging::setLogger(std::function<void(const std::string&, MemLogLevel)> logger)
 {
 	logger_ = logger;
 }
 
-void Logging::log(LogLevel level, const std::string& message) {
+void Logging::log(const std::string& message, MemLogLevel level) {
 	std::lock_guard<std::mutex> lock(mutex_); // Ensure thread safety
 	if (logger_) {
-		logger_(level, message);
+		logger_(message, level);
 	}
 }

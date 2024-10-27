@@ -1,4 +1,9 @@
 #pragma once
+#ifdef TYGERMEM_EXPORTS
+#define TYGERMEM __declspec(dllexport)
+#else
+#define TYGERMEM __declspec(dllimport)
+#endif
 #include "camerastate.h"
 #include "vector3f.h"
 
@@ -8,7 +13,7 @@ enum class CameraDistanceLevel {
 	HIGH
 };
 
-class Camera
+class TYGERMEM Camera
 {
 public:
 	static CameraState getCameraState();

@@ -1,4 +1,9 @@
 #pragma once
+#ifdef TYGERMEM_EXPORTS
+#define TYGERMEM __declspec(dllexport)
+#else
+#define TYGERMEM __declspec(dllimport)
+#endif
 #include <iostream>
 #include "vector3f.h"
 #include "Instance.h"
@@ -42,7 +47,7 @@ enum class ObjectType {
     TyAttributes = 0x273740
 };
 
-class GameObject {
+class TYGERMEM GameObject {
 protected:
     uintptr_t address;
 public:

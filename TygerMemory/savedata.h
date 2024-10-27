@@ -1,8 +1,11 @@
 #pragma once
+#ifdef TYGERMEM_EXPORTS
+#define TYGERMEM __declspec(dllexport)
+#else
+#define TYGERMEM __declspec(dllimport)
+#endif
 #include "level.h"
 #include "core.h"
-
-class LevelData;
 
 enum class Zone {
 	ZZone,
@@ -58,7 +61,7 @@ enum class Rang {
 	Doomerang = 4
 };
 
-typedef struct LevelData {
+struct LevelData {
 	char TimesEntered;
 	char Opals[0x25];
 	char Unk;
@@ -70,13 +73,13 @@ typedef struct LevelData {
 	short TriggerSaves[0x14];
 };
 
-typedef struct ZoneData {
+struct ZoneData {
 	bool Unlocked;
 	bool Complete;
 	bool BossActive;
 };
 
-typedef struct AttributeData {
+struct AttributeData {
 	bool LearntToSwim;
 	bool LearntToDive;
 	bool GotExtraHealth;
@@ -95,7 +98,7 @@ typedef struct AttributeData {
 	bool GotChronorang;
 };
 
-typedef struct SaveDataStruct {
+struct SaveDataStruct {
 	int Size;
 	int Magic;
 	LevelCode SavedLevel;
@@ -130,7 +133,7 @@ typedef struct SaveDataStruct {
 	int SkinId;
 };
 
-class SaveData {
+class TYGERMEM SaveData {
 protected:
     uintptr_t baseAddress; 
 public:
