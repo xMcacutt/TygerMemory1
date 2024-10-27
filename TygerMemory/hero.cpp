@@ -45,13 +45,13 @@ void Hero::setHealth(int health){
 }
 
 int Hero::getBreath(){
-	if (isBull)
+	if (isBull())
 		return 0;
 	return *(int*)(Core::moduleBase + 0x2737F0);
 }
 
 void Hero::setBreath(int breath){
-	if (isBull)
+	if (isBull())
 		return;
 	*(int*)(Core::moduleBase + 0x2737F0) = breath;
 }

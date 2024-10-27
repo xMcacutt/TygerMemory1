@@ -1,19 +1,17 @@
 #include "pch.h"
 #include "logging.h"
+#include <string>
+#include <fstream>
 
-Logging& Logging::getInstance()
-{
-	static Logging instance;
-	return instance;
+void Logging::del() {
+    const std::string logFilePath = "tygmem.log";
+    std::remove(logFilePath.c_str());
 }
 
-void Logging::setLogger(std::function<void(const std::string&, MemLogLevel)> logger)
-{
-	logger_ = logger;
-}
-
-void Logging::log(const std::string& message, MemLogLevel level) {
-	if (logger_) {
-		logger_(message, level);
-	}
+void Logging::log(const std::string& message) {
+    const std::string logFilePath = "tygmem.log";
+    std::ofstream logFile(logFilePath, std::ios_base::app);
+    if (logFile.is_open()) {
+        logFile << message << std::endl;
+    }
 }

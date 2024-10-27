@@ -18,10 +18,9 @@ class TYGERMEM Core
 private:
 	static DWORD processId;
 	static HANDLE hProcess;
-	static uintptr_t getModuleBaseAddress(HANDLE hProcess);
 public:
 	static uintptr_t moduleBase;
-	static bool initialize(HWND hWnd, std::function<void(const std::string&, MemLogLevel)> loggerFunction);
+	static bool initialize(HMODULE hModule);
 	static uintptr_t getPointerAddress(uintptr_t baseAddress, const std::vector<int>& offsets);
 
 	template <typename T>

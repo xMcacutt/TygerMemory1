@@ -21,7 +21,7 @@ Instance GameObject::getFirst() {
 
 Instance GameObject::getByIndex(int index) {
     if (index >= getCurrentCount()) {
-        Logging::getInstance().log("Attempted to access object which is not loaded.", MemLogLevel::WARN);
+        Logging::log("Attempted to access object which is not loaded.");
         return Instance(0, -1, nullptr);
     }
     auto addr = *(uintptr_t*)(Core::moduleBase + address + 0x48);
