@@ -4,12 +4,12 @@
 #include <fstream>
 
 void Logging::del() {
-    const std::string logFilePath = "tygmem.log";
+    const std::string logFilePath = "Plugins/Logs/tygmem.log";
     std::remove(logFilePath.c_str());
 }
 
 void Logging::log(const std::string& message) {
-    const std::string logFilePath = "tygmem.log";
+    const std::string logFilePath = "Plugins/Logs/tygmem.log";
     std::ofstream logFile(logFilePath, std::ios_base::app);
     if (logFile.is_open()) {
         logFile << message << std::endl;

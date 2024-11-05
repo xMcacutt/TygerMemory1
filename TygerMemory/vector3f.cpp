@@ -7,7 +7,7 @@ Vector3f::operator const void* () const {
 	return static_cast<const void*>(this);
 }
 
-float Vector3f::distance(const Vector3f& other) const {
+float Vector3f::distance_to(const Vector3f& other) const {
 	return sqrt((other.x - x) * (other.x - x) +
 		(other.y - y) * (other.y - y) +
 		(other.z - z) * (other.z - z));

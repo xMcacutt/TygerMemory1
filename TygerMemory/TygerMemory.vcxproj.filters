@@ -50,9 +50,6 @@
     <ClInclude Include="gameobject.h">
       <Filter>Header Files\gameobject</Filter>
     </ClInclude>
-    <ClInclude Include="goldencog.h">
-      <Filter>Header Files\gameobject</Filter>
-    </ClInclude>
     <ClInclude Include="gamestate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -67,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="savedata.h">
       <Filter>Header Files\savedata</Filter>
+    </ClInclude>
+    <ClInclude Include="totals.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -94,9 +94,6 @@
     <ClCompile Include="gameobject.cpp">
       <Filter>Source Files\gameobject</Filter>
     </ClCompile>
-    <ClCompile Include="goldencog.cpp">
-      <Filter>Source Files\gameobject</Filter>
-    </ClCompile>
     <ClCompile Include="gamestate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -109,10 +106,11 @@
     <ClCompile Include="savedata.cpp">
       <Filter>Source Files\savedata</Filter>
     </ClCompile>
+    <ClCompile Include="totals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Available Functionst.txt">
-      <Filter>Source Files</Filter>
-    </Text>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

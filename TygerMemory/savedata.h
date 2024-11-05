@@ -63,11 +63,12 @@ enum class Rang {
 
 struct LevelData {
 	char TimesEntered;
-	char Opals[0x25];
-	char Unk;
+	char Opals[0x26];
+	char Unk1;
 	bool ThunderEggs[0x8];
 	bool GoldenCogs[0xA];
 	char Bilbies[0x5];
+	char Unk2;
 	int TimeAttackBestSeconds;
 	int TimeAttackLastSeconds;
 	short TriggerSaves[0x14];
@@ -107,7 +108,6 @@ struct SaveDataStruct {
 	bool IsHardcore;
 	bool IsDevMode;
 	LevelData LevelData[24];
-	int Unk;
 	ZoneData ZoneData[6];
 	short Unk2;
 	LevelCode CurrentLevel;
@@ -134,12 +134,27 @@ struct SaveDataStruct {
 };
 
 class TYGERMEM SaveData {
+
 protected:
     uintptr_t baseAddress; 
+	static SaveDataStruct* Data;
+
 public:
-	SaveDataStruct* Data = new ((void*)(*(int*)(Core::moduleBase + 0x288730)))SaveDataStruct;
+	static SaveDataStruct* GetData();
+	
+	/// <summary>
+	/// Simple method for setting a specific fmv's (cutscene) watched status flag.
+	/// </summary>
+	/// <param name="fmv:">The specific fmv flag to set.</param>
+	/// <param name="value:">The status to set the flag to.</param>
 	void setFmvWatched(FMV fmv, bool value);
+
+	/// <summary>
+	/// Simple method for getting a specific fmv's (cutscene) watched status.
+	/// </summary>
+	/// <param name="fmv:">The specific fmv flag to get.</param>
 	bool getFmvWatched(FMV fmv);
+
 	// bool getPictureFrame(int index);
 	// void setPictureFrame(int index, bool value);
 };

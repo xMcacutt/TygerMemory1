@@ -48,12 +48,52 @@ enum class ObjectType {
 };
 
 class TYGERMEM GameObject {
-protected:
+
+private:
     uintptr_t address;
-public:
     GameObject(uintptr_t addr);
-    virtual int getCurrentCount();
+
+public:
+    friend class Instance;
+
+    /// <summary>
+    ///     <para>Gets the GameObject data structure for the given type.</para>
+    /// </summary>
+    /// <param name="type:">
+    ///     (ObjectType) the GameObject to retrieve data for.
+    /// </param>
+    /// <returns>
+    ///     An instance of the GameObject class.
+    /// </returns>
     static GameObject getObject(ObjectType type);
+
+    /// <summary>
+    ///     Gets the number of objects of this type currently loaded.
+    /// </summary>
+    /// <returns>
+    ///     The number of objects loaded.
+    /// </returns>
+    int getCurrentCount();
+
+    /// <summary>
+    ///     Gets an Instance object for the first object of this type.
+    /// </summary>
+    /// <returns>
+    ///     <para>The first Instance object of this type.</para>
+    ///     <para>Used to access data about the instance.</para>
+    /// </returns>
     Instance getFirst();
+
+    /// <summary>
+    ///     Gets an Instance object for the object of this type at the given index.
+    /// </summary>
+    /// <param name="index">
+    ///     The index of the instance to get the data for.
+    /// </param>
+    /// <returns>
+    ///     <para>The Instance object of this type at the given index.</para>
+    ///     <para>Used to access data about the instance.</para>
+    /// </returns>
     Instance getByIndex(int index);
+
 };

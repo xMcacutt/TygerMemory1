@@ -147,7 +147,6 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gamestate.h" />
-    <ClInclude Include="goldencog.h" />
     <ClInclude Include="hero.h" />
     <ClInclude Include="herostate.h" />
     <ClInclude Include="instance.h" />
@@ -155,6 +154,7 @@
     <ClInclude Include="logging.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="savedata.h" />
+    <ClInclude Include="totals.h" />
     <ClInclude Include="vector3f.h" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +163,6 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="gamestate.cpp" />
-    <ClCompile Include="goldencog.cpp" />
     <ClCompile Include="hero.cpp" />
     <ClCompile Include="instance.cpp" />
     <ClCompile Include="level.cpp" />
@@ -175,10 +174,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="savedata.cpp" />
+    <ClCompile Include="totals.cpp" />
     <ClCompile Include="vector3f.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Available Functionst.txt" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

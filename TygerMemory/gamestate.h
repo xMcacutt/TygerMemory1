@@ -56,8 +56,8 @@ public:
 	/// <para>Will not display a message if the player is on the main menu, loading, or in a cutscene.</para>
 	/// <para>When seconds is 0, the message will display indefinitely and display "Pres ESC to continue".</para>
 	/// </summary>
-	/// <param name='message'>Message to be displayed.</param>
-	/// <param name='seconds'>Time for the message to be displayed.</param>
+	/// <param name='message:'>Message to be displayed.</param>
+	/// <param name='seconds:'>Time for the message to be displayed.</param>
 	static void displayInGameMessage(std::string message, int seconds);
 
 	static void setCollectibleLinesVisibility(bool status);
