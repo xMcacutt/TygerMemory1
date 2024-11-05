@@ -60,7 +60,7 @@ Core::initialize((HMODULE)API::Get()->param()->TyHModule);
 
 This initializes the API to allow it to read from the game's memory by providing it the .exe module handle.
 
-From here, any of the functions across the API can be accessed and used to retrieve and modify data in the game. For full documentation, make sure you check out [the modding wiki page](). The [Ty Collectible Tracker Plugin](https://github.com/xMcacutt/Ty-Collectible-Tracker-Plugin) can be used as an example.
+From here, any of the functions across the API can be accessed and used to retrieve and modify data in the game. For full documentation, make sure you check out [the modding wiki page](https://tymoddingwiki.github.io/TygerFramework/TygerMemory/Setup/). The [Ty Collectible Tracker Plugin](https://github.com/xMcacutt/Ty-Collectible-Tracker-Plugin) can be used as an example.
 
 ---
 
