@@ -6,7 +6,9 @@
 
 ### What Is Tyger?
 
-In summer 2024, [Kana (ElusiveFluffy)](), a member of the Ty the Tasmanian Tiger modding community, discovered a relatively simple method to inject C++ code into any of the original trilogy Ty games through an unused DLL referenced by the game. Kana then created the [**TygerFramework**](), a plugin loader and API designed to develop and load libraries of code into Ty, with the option for ImGui implementation to create custom UI within the game process.
+In summer 2024, [Kana (ElusiveFluffy)](https://github.com/ElusiveFluffy), a member of the Ty the Tasmanian Tiger modding community, discovered a relatively simple method to inject C++ code into any of the original trilogy Ty games through an unused DLL referenced by the game. Kana then created the [TygerFramework](https://github.com/ElusiveFluffy/TygerFramework), a plugin loader and API designed to develop and load libraries of code into Ty, with the option for ImGui implementation to create custom UI within the game process.
+
+
 
 ### Why Does This Matter?
 
@@ -32,20 +34,19 @@ If you're here as a developer wanting to make a plugin, you're best starting wit
 
 ### Adding TygerMemory
 
-The first thing you'll need to do is head over to the releases page and download the TygerMemoryAPI.zip. This file contains all of the required header files in an include folder as well as the .lib and .dll builds of the API. For development, you likely won't need the .dll but it is needed for testing. Make sure you put it in the 'Plugins' directory along with any of your built plugins.
+The first thing you'll need to do is head over to the releases page and download the TygerMemoryAPI.zip. This file contains all of the required header files in an include folder as well as the .lib build of the API. 
 
-Next, add the header files in the include directory to your project. This step will differ depending on what build system you use.
+Add the header files in the include directory to your project. This step will differ depending on what build system you use. For visual studio, you can simply go to the project properties and add the include directory to the project include directories.
 
-Finally, make sure you set the linker to link TygerMemory.lib.
+Finally, make sure you set the linker to link TygerMemory.lib. In visual studio, adding an existing item and selecting TygerMemory.lib will add the library as source. This, along with the header files being included, is sufficient for usage.
 
 If you're developing several plugins, you may either
 
 - Keep a single instance of the API files somewhere and have all projects reference it. This way, you only need to update the single instance and then your projects' references to the API files when a new update is released.
-  
-- Copy the API files you your project each time so that each project is built with a specific version of the API. If, for a given project, you don't expect to need new features as they are released, this is the better option.
-  
 
-Make sure the header files and the library you are using are from the same build of the API. Mismatched versions often lead to linker errors.
+- Copy the API files you your project each time so that each project is built with a specific version of the API. If, for a given project, you don't expect to need new features as they are released, this is the better option.
+
+Make sure the header files and the library you are using are from the same build of the API. Mismatched versions often lead to linker or invalid dll entry point errors.
 
 ---
 
@@ -59,7 +60,7 @@ Core::initialize((HMODULE)API::Get()->param()->TyHModule);
 
 This initializes the API to allow it to read from the game's memory by providing it the .exe module handle.
 
-From here, any of the functions across the API can be accessed and used to retrieve and modify data in the game. For full documentation, make sure you check out [the modding wiki page](). Example plugins which can be used as a template can also be found [here](), though it should be noted that most of the setup for the API comes from project, build, and linker settings.
+From here, any of the functions across the API can be accessed and used to retrieve and modify data in the game. For full documentation, make sure you check out [the modding wiki page](). The [Ty Collectible Tracker Plugin](https://github.com/xMcacutt/Ty-Collectible-Tracker-Plugin) can be used as an example.
 
 ---
 
@@ -67,10 +68,12 @@ From here, any of the functions across the API can be accessed and used to retri
 
 ### Need Help?
 
-Join the [Ty the Tasmanian Tiger modding discord]().
+Join the [Ty the Tasmanian Tiger modding discord](https://discord.gg/2jRZZcknkM).
 
 There's plenty of people who would be more than happy to help. We'd also love any input you can give.
 
 ### How Can I Contribute?
 
 We'd love any additions to the project. This API will hopefully become large and comprehensive over time with any new findings in Ty's memory being added in. If you find something you need, suggest it to us in the modding discord linked above or make a pull request and it'll be merged.
+
+
