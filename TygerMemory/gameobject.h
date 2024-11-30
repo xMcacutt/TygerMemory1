@@ -48,7 +48,7 @@ enum class ObjectType {
 };
 
 class TYGERMEM GameObject {
-
+    // GameObject.getObject()
 private:
     uintptr_t address;
     GameObject(uintptr_t addr);

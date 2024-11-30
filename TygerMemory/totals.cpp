@@ -7,11 +7,16 @@
 
 int Totals::getCurrentThunderEggCount(TotalType totalType)
 {
-    auto saveData = SaveData::GetData();
-    if (totalType == TotalType::Global)
-        return saveData->ThunderEggCount;
-    auto levelData = saveData->LevelData[(int)Level::getCurrentLevel()];
-    return std::count(levelData.ThunderEggs, levelData.ThunderEggs + 8, true);
+    auto saveData = SaveData::GetData()->LevelData;
+    if (totalType == TotalType::Level) {
+        auto levelData = saveData[(int)Level::getCurrentLevel()];
+        return std::count(levelData.ThunderEggs, levelData.ThunderEggs + 8, true);
+    }
+    int count = 0;
+    for (size_t i = 0; i < 24; ++i)
+        count += std::count(saveData[i].ThunderEggs, saveData[i].ThunderEggs + 8, true);
+    return count;
+
 }
 
 int Totals::getCurrentCogCount(TotalType totalType)
