@@ -42,6 +42,7 @@ enum class PauseMenuScreen {
 	ChangeLevel = 16,
 	EndCredits = 17,
 	Leaderboard = 18,
+	Skins = 20,
 	UNKNOWN = 21
 };
 
