@@ -96,6 +96,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -154,6 +155,7 @@
     <ClInclude Include="logging.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="savedata.h" />
+    <ClInclude Include="sound.h" />
     <ClInclude Include="totals.h" />
     <ClInclude Include="vector3f.h" />
   </ItemGroup>
@@ -174,6 +176,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="savedata.cpp" />
+    <ClCompile Include="sound.cpp" />
     <ClCompile Include="totals.cpp" />
     <ClCompile Include="vector3f.cpp" />
   </ItemGroup>
