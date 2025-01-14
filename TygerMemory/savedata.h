@@ -4,17 +4,8 @@
 #else
 #define TYGERMEM __declspec(dllimport)
 #endif
-#include "level.h"
 #include "core.h"
-
-enum class Zone {
-	ZZone,
-	AZone,
-	BZone,
-	CZone,
-	DZone,
-	EZone,
-};
+#include "sharedEnums.h"
 
 enum class FMV {
 	Prologue,

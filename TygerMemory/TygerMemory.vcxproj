@@ -145,6 +145,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="camerastate.h" />
     <ClInclude Include="core.h" />
+    <ClInclude Include="sharedEnums.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gamestate.h" />
