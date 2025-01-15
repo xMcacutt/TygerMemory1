@@ -14,5 +14,5 @@ void Minimap::SetMapTransform(LevelCode level, MapTransform* transform)
 
 void Minimap::SetDisabledMapLevel(char levelIndex)
 {
-    Core::WriteHardcodedValue((BYTE*)(Core::moduleBase + 0xEA136), &levelIndex, 1);
+    Core::SetReadOnlyValue((BYTE*)(Core::moduleBase + 0xEA136), &levelIndex, 1);
 }

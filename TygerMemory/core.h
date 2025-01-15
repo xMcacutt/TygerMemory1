@@ -49,10 +49,10 @@ public:
 	static uintptr_t getPointerAddress(uintptr_t baseAddress, const std::vector<int>& offsets);
 
 	/// <summary>
-	/// Writes a value to any read only memory given a correct size
+	/// Writes a value to any read only memory with the length of the specified
 	/// </summary>
 	/// <param name="address:">The destination address to write to</param>
 	/// <param name="value:">The value to write</param>
 	/// <param name="size:">The size in bytes of the value</param>
-	static void WriteHardcodedValue(void* address, void* value, size_t size);
+	static void SetReadOnlyValue(void* address, void* value, size_t size);
 };
