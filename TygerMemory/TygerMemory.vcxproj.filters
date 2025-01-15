@@ -74,6 +74,12 @@
     <ClInclude Include="sharedEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="minimap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vector4f.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -116,6 +122,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minimap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

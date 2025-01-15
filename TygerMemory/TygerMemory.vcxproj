@@ -145,6 +145,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="camerastate.h" />
     <ClInclude Include="core.h" />
+    <ClInclude Include="minimap.h" />
     <ClInclude Include="sharedEnums.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="gameobject.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="sound.h" />
     <ClInclude Include="totals.h" />
     <ClInclude Include="vector3f.h" />
+    <ClInclude Include="vector4f.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
@@ -170,6 +172,7 @@
     <ClCompile Include="instance.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="logging.cpp" />
+    <ClCompile Include="minimap.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -35,3 +35,14 @@ uintptr_t Core::getPointerAddress(uintptr_t baseAddr, const std::vector<int>& of
 	}
 	return currentAddr;
 }
+
+void Core::WriteHardcodedValue(void* address, void* value, size_t size) {
+	DWORD oldProtection;
+	//Change the memory access to ReadWrite to be able to change the hardcoded value (usually its read only)
+	VirtualProtect(address, size, PAGE_EXECUTE_READWRITE, &oldProtection);
+
+	memcpy(address, value, size);
+
+	//Set it back to the old access protection
+	VirtualProtect(address, size, oldProtection, &oldProtection);
+}
