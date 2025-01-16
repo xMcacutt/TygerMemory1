@@ -21,5 +21,20 @@ public:
 	static int getCurrentOpalCount(bool thisLoad);
 	static int getCurrentRangCount();
 	static int getCurrentTalismanCount();
+
+	// Sets the total amount of opals for the full game totals
+	static void SetTotalOpals(int amount);
+	// Sets the total amount of rainbow scales for the full game totals
+	static void SetTotalRainbowScales(int amount);
+	// Sets the total amount of talismans for the full game totals
+	static void SetTotalTalismans(int amount);
+	// Sets the total amount of golden cogs for the full game totals
+	static void SetTotalCogs(int amount);
+	// Sets the total amount of bilbies for the full game totals
+	static void SetTotalBilbies(int amount);
+	// Sets the total amount of thunder eggs for the full game totals
+	static void SetTotalThunderEggs(int amount);
+	// Sets the total amount of picture frames for the full game totals
+	static void SetTotalPictureFrames(int amount);
 };
 

@@ -108,3 +108,38 @@ int Totals::getCurrentTalismanCount()
     auto saveData = SaveData::GetData();
     return std::count(saveData->Talismans, saveData->Talismans + 5, true);
 }
+
+void Totals::SetTotalOpals(int amount)
+{
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xE7691), &amount, 4);
+}
+
+void Totals::SetTotalRainbowScales(int amount)
+{
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xE76B6), &amount, 4);
+}
+
+void Totals::SetTotalTalismans(int amount)
+{
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xE76CF), &amount, 4);
+}
+
+void Totals::SetTotalCogs(int amount)
+{
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xE76E8), &amount, 4);
+}
+
+void Totals::SetTotalBilbies(int amount)
+{
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xE7701), &amount, 4);
+}
+
+void Totals::SetTotalThunderEggs(int amount)
+{
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xE771A), &amount, 4);
+}
+
+void Totals::SetTotalPictureFrames(int amount)
+{
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xE7733), &amount, 4);
+}
