@@ -13,6 +13,9 @@ enum TotalType {
 
 class TYGERMEM Totals
 {
+private:
+	static int* GameInfoLevelIndexArrayPtr;
+	static int GameInfoLevelCount;
 public:
 	static int getCurrentThunderEggCount(TotalType totalType);
 	static int getCurrentCogCount(TotalType totalType);
@@ -36,5 +39,12 @@ public:
 	static void SetTotalThunderEggs(int amount);
 	// Sets the total amount of picture frames for the full game totals
 	static void SetTotalPictureFrames(int amount);
+
+	/// <summary>
+	/// Sets the levels that show up in the game info and what order to show them in
+	/// </summary>
+	/// <param name="levels:">The level array for the levels to show and order</param>
+	/// <param name="levelCount:">The amount of levels in the array (make sure this is correct)</param>
+	static void SetGameInfoLevels(int levels[], int levelCount);
 };
 

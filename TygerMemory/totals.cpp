@@ -143,3 +143,59 @@ void Totals::SetTotalPictureFrames(int amount)
 {
     Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xE7733), &amount, 4);
 }
+
+int Totals::GameInfoLevelCount = 0;
+int* Totals::GameInfoLevelIndexArrayPtr = nullptr;
+
+void Totals::SetGameInfoLevels(int levels[], int levelCount)
+{
+    int* oldArrayPtr = GameInfoLevelIndexArrayPtr;
+
+    GameInfoLevelIndexArrayPtr = new int[levelCount];
+    memcpy(GameInfoLevelIndexArrayPtr, levels, levelCount * 4);
+    int levelsPtr = (int)GameInfoLevelIndexArrayPtr;
+
+    //Level array
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe55c3), &levelsPtr, 4);
+
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5747), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe57d3), &levelsPtr, 4);
+
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5a27), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5a48), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5af3), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5b20), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5b85), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5bc4), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5caf), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5cc3), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5d77), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5dfc), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5e29), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5e98), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5ebc), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5f2a), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5f51), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe5fa1), &levelsPtr, 4);
+
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe6015), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe603f), &levelsPtr, 4);
+
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe66ef), &levelsPtr, 4);
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe67d7), &levelsPtr, 4);
+
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe69fd), &levelsPtr, 4);
+
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe6a43), &levelsPtr, 4);
+
+    Core::SetReadOnlyValue((int*)(Core::moduleBase + 0xe6a9c), &levelsPtr, 4);
+
+    //Level count
+    *(int*)(Core::moduleBase + 0x26164c) = levelCount;
+
+    // Delete/Unallocate the old allocated memory if it had previously been allocated
+    // Deleting it after the new one has been set everywhere in the code, 
+    // just incase so the game doesn't try to potentially access random memory
+    if (oldArrayPtr)
+        delete[] oldArrayPtr;
+}
