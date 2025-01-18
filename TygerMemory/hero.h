@@ -7,6 +7,7 @@
 #include "HeroState.h"
 #include <variant>
 #include "vector3f.h"
+#include "sharedEnums.h"
 
 class TYGERMEM Hero
 {
@@ -43,4 +44,10 @@ public:
 	static void setMainSkin(int index);
 	static void resetValues();
 	static bool isBull();
+
+	/// <summary>
+	/// Sets the level everywhere in the code that are hard coded to only make Bull spawn in outback.
+	/// <para> This also requires editing the lv2 for the level you want bull to spawn in and changing Ty to the BushPig </para>
+	/// </summary>
+	static void SetBullHardCodeLevel(LevelCode level);
 };

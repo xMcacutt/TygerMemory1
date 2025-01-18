@@ -155,3 +155,21 @@ bool Hero::isBull()
 {
 	return *(bool*)(Core::moduleBase + 0x27E544);
 }
+
+void Hero::SetBullHardCodeLevel(LevelCode level)
+{
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x3e57a), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x50f9c), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x52477), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x78ddc), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0xfc246), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0xfc442), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x10c9ab), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x139059), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x14f071), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x14f14a), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x150a63), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x1652e4), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x1665f5), &level, 1);
+	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x16aabc), &level, 1);
+}
