@@ -74,8 +74,8 @@ struct ZoneData {
 struct AttributeData {
 	bool LearntToSwim;
 	bool LearntToDive;
-	bool GotExtraHealth;
 	bool GotSecondRang;
+	bool GotExtraHealth;
 	bool GotBoomerang;
 	bool GotFrostyrang;
 	bool GotFlamerang;
