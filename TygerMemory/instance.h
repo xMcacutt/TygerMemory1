@@ -71,5 +71,12 @@ public:
     /// </returns>
     virtual Vector3f getPosition();
 
+    /// <summary>
+    /// Attempts to get the address of this instance.
+    /// </summary>
+    /// <returns>
+    /// A uintptr_t to the address of the instance.
+    /// </returns>
+    virtual uintptr_t getAddr();
 };
 

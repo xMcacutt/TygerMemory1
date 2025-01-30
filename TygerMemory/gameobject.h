@@ -44,7 +44,8 @@ enum class ObjectType {
     Stopwatch = 0x2703D8,
     TimeAttack = 0x2704B8,
     Target = 0x270558,
-    TyAttributes = 0x273740
+    TyAttributes = 0x273740,
+    Julius = 260880,
 };
 
 class TYGERMEM GameObject {

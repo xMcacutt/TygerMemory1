@@ -34,3 +34,8 @@ Vector3f Instance::getPosition() {
     auto addr = *(uintptr_t*)(address + 0x8);
     return *(Vector3f*)(addr + 0x74);
 }
+
+uintptr_t Instance::getAddr()
+{
+    return address;
+}
