@@ -106,7 +106,7 @@ PauseMenuScreen GameState::getPreviousPauseMenuScreen()
 void GameState::forceMainMenu()
 {
     *(float*)(Core::moduleBase + 0x264248) = 0.01f;
-    *(bool*)(Core::moduleBase + 0x286C54) = true;
+    *(bool*)(Core::moduleBase + 0x286C54) = false;
     setFrontEndMenuScreen(FrontEndScreen::MainMenu);
     *(int*)(Core::moduleBase + 0x288A74) = 0x8;
 }

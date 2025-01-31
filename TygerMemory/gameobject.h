@@ -49,11 +49,9 @@ enum class ObjectType {
 };
 
 class TYGERMEM GameObject {
-    // GameObject.getObject()
 private:
     uintptr_t address;
     GameObject(uintptr_t addr);
-
 public:
     friend class Instance;
 
@@ -61,12 +59,12 @@ public:
     ///     <para>Gets the GameObject data structure for the given type.</para>
     /// </summary>
     /// <param name="type:">
-    ///     (ObjectType) the GameObject to retrieve data for.
+    ///     (descAddr) address of the descriptor of the game object to retrieve data for.
     /// </param>
     /// <returns>
     ///     An instance of the GameObject class.
     /// </returns>
-    static GameObject getObject(ObjectType type);
+    static GameObject getObject(int descAddr);
 
     /// <summary>
     ///     Gets the number of objects of this type currently loaded.

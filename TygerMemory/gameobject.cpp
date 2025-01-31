@@ -5,14 +5,14 @@
 #include "vector3f.h"
 #include "GameObject.h"
 
-GameObject::GameObject(uintptr_t addr) : address(addr) {}
+GameObject::GameObject(uintptr_t addr) { address = addr; }
 
 int GameObject::getCurrentCount() {
     return *(int*)(Core::moduleBase + address + 0x44);
 }
 
-GameObject GameObject::getObject(ObjectType type) {
-    return GameObject(Core::moduleBase + (int)type);
+GameObject GameObject::getObject(int descAddr) {
+    return GameObject(descAddr);
 }
 
 Instance GameObject::getFirst() {
