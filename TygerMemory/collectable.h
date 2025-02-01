@@ -30,7 +30,7 @@ public:
 	/// <summary>
 	/// All the info used for the collectables and level select
 	/// </summary>
-	/// <returns>Returns a array with 24 elements, use the level code array for the index</returns>
+	/// <returns>Returns a array with 24 elements, use the level code enum for the index</returns>
 	static LevelInfo* GetLevelInfoArray();
 
 	/// <summary>

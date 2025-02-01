@@ -7,7 +7,10 @@ TyPlaySoundByIndex_t Sound::GetTySoundFunction()
     return (TyPlaySoundByIndex_t)(Core::moduleBase + 0x153dd0);
 }
 
-UINT* Sound::PlayTySoundByIndex(int soundIndex)
+UINT* Sound::PlayTySoundByIndex(GlobalSound soundIndex, Vector4f* soundLocation)
 {
-    return GetTySoundFunction()(soundIndex, nullptr, 0.0f);
+    //Just always make w 1, seems to be what it usually is in the game
+    if (soundLocation)
+        soundLocation->w = 1.0f;
+    return GetTySoundFunction()(soundIndex, soundLocation, 0.0f);
 }
