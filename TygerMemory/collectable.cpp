@@ -7,12 +7,12 @@ LevelInfo* Collectable::GetLevelInfoArray()
     return (LevelInfo*)(Core::moduleBase + 0x26F6D0);
 }
 
-FloatRGBA* Collectable::GetThunderEggParticleColours()
+RGBA* Collectable::GetThunderEggParticleColours()
 {
-    return (FloatRGBA*)(Core::moduleBase + 0x2701B0);
+    return (RGBA*)(Core::moduleBase + 0x2701B0);
 }
 
-void Collectable::SetGoldenCogParticleColours(FloatRGBA colour)
+void Collectable::SetGoldenCogParticleColours(RGBA colour)
 {
-    Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x209C60), &colour, sizeof(FloatRGBA));
+    Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x209C60), &colour, sizeof(RGBA));
 }
