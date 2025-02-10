@@ -28,7 +28,7 @@ Tyger Memory is a set of high level functions that hides the memory reading behi
 
 Firstly, this API is TygerMemory1 specifically aimed at Ty the Tasmanian Tiger 1. The functions provided by the API will produce undefined behaivour on the other games. TygerMemory2 and TygerMemory3 may be created in the future. Additionally there are some safety checks on certain function calls which are expected to be handled by the user. Check the documentation or function info for more details.
 
-If you're only looking to use plugins and someone has sent you to this page, all you need to do is download the correct (usually the latest) version of the TygerMemory.dll and add it to your 'Plugins' directory. The other files are not needed.
+If you're only looking to use plugins and someone has sent you to this page, all you need to do is download the correct (usually the latest) version of the TygerMemory.dll and add it to your 'Dependencies' directory. The other files are not needed.
 
 If you're here as a developer wanting to make a plugin, you're best starting with [setting up TygerFramework](https://github.com/ElusiveFluffy/TygerFramework). Once you have your first plugin working, it's time to implement TygerMemory. A full guide can be found on the modding wiki.
 
