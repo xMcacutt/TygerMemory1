@@ -7,7 +7,7 @@
 #include "vector4f.h"
 
 //Credit to floralz for getting all the indexes from global.sound
-enum GlobalSound
+enum class GlobalSound
 {
     TyJump = 0x0,
     TyKnockDown = 0x1,
