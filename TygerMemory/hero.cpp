@@ -101,7 +101,7 @@ float Hero::getJumpHeight() {
 }
 
 void Hero::setJumpHeight(float height = 18.57f) {
-	*(float*)(Core::moduleBase + 0x28894C) = height;
+	*(float*)(Core::moduleBase + 0x28893C) = height;
 }
 
 float Hero::getLedgeGrabTolerance(){
