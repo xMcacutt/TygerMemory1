@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="boomerang.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="camerastate.h" />
     <ClInclude Include="collectable.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="vector4f.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="boomerang.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="collectable.cpp" />
     <ClCompile Include="core.cpp" />
