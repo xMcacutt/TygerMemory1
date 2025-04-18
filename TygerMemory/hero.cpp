@@ -156,6 +156,11 @@ bool Hero::isBull()
 	return *(bool*)(Core::moduleBase + 0x27E544);
 }
 
+bool Hero::isChargeBiting()
+{
+	return *(bool*)(Core::moduleBase + 0x271BC0);
+}
+
 void Hero::SetBullHardCodeLevel(LevelCode level)
 {
 	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x3e57a), &level, 1);

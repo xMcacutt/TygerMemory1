@@ -44,6 +44,7 @@ public:
 	static void setMainSkin(int index);
 	static void resetValues();
 	static bool isBull();
+	static bool isChargeBiting();
 
 	/// <summary>
 	/// Sets the level everywhere in the code that are hard coded to only make Bull spawn in outback.
