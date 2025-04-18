@@ -742,7 +742,7 @@ enum class GlobalSound
     TYCSD1_07_Extra = 0x2da
 };
 
-typedef UINT*(*TyPlaySoundByIndex_t)(GlobalSound soundIndex, Vector4f* SoundLocation, float unknownUsuallyZero);
+typedef UINT*(*TyPlaySoundByIndex_t)(GlobalSound soundIndex, Vector4f* SoundLocation, int materialFlags);
 
 class TYGERMEM Sound
 {
@@ -754,9 +754,10 @@ public:
 	/// </summary>
 	/// <param name="soundIndex:"> The index of the sound to play</param>
 	/// <param name="soundLocation:"> A pointer to a vector4f for the coordinates of where to play the sound. Leave it as a nullptr to if no position is needed, like for UI sounds</param>
+	/// <param name="materialFlags:"> Bit flags for what material variant of a sound to play if it has any, probably uses the material flags from global.mad</param>
 	/// <returns>
 	///		Returns probably a pointer to the playing sound effect properties to potentially stop it (hasn't been looked into)
 	/// </returns>
-	static UINT* PlayTySoundByIndex(GlobalSound soundIndex, Vector4f* soundLocation = nullptr);
+	static UINT* PlayTySoundByIndex(GlobalSound soundIndex, Vector4f* soundLocation = nullptr, int materialFlags = 0);
 };
 
