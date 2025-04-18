@@ -20,8 +20,8 @@ void Hero::setState(TyState state)
 }
 
 int Hero::getState() {
-	uintptr_t addr = isBull() ? 0x254564 : 0x271590;
-	return *(uintptr_t*)(Core::moduleBase + addr);
+	uintptr_t addr = isBull() ? 0x254564 : 0x26EE4C;
+	return *(int*)(Core::moduleBase + addr);
 }
 
 void Hero::setPosition(Vector3f coords) {
