@@ -158,7 +158,7 @@ bool Hero::isBull()
 
 bool Hero::isChargeBiting()
 {
-	return (*(bool*)(Core::moduleBase + 0x271BC0) && *(bool*)(Core::moduleBase + 0x27EC2C));
+	return *(int*)(Core::moduleBase + 0x271B64) == 150;
 }
 
 void Hero::SetBullHardCodeLevel(LevelCode level)
