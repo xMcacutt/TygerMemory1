@@ -35,6 +35,12 @@ struct Vector4f
 				 z * rhs,
 				 w };
 	};
+	Vector4f operator+(float const rhs) const {
+		return { x + rhs,
+				 y + rhs,
+				 z + rhs,
+				 w };
+	};
 
 	static inline Vector4f Normalize(const Vector4f& vector) {
 		float length = std::sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
