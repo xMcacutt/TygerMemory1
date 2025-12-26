@@ -5,7 +5,8 @@
 #define TYGERMEM __declspec(dllimport)
 #endif
 #include "vector4f.h"
-#include <minwindef.h>
+
+typedef unsigned int UINT;
 
 //Credit to floralz for getting all the indexes from global.sound
 enum class GlobalSound
