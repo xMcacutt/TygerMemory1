@@ -61,7 +61,7 @@ float Hero::getSwimSpeed(){
 }
 
 void Hero::setSwimSpeed(float speed = 20.0f){
-	*(float*)(Core::moduleBase + 0x1F982C) = speed;
+	Core::SetReadOnlyValue((float*)(Core::moduleBase + 0x1F982C), &speed, 4);
 }
 
 float Hero::getRunSpeed(){
