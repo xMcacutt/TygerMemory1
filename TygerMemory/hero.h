@@ -12,12 +12,17 @@
 class TYGERMEM Hero
 {
 public:
+	using DeathCallback = void(*)();
+	static void addDeathListener(DeathCallback callback);
+	static void removeDeathListener(DeathCallback callback);
 	static void setState(int state);
 	static void setState(BullState state);
 	static void setState(TyState state);
 	static int getState();
 	static Vector3f getPosition();
 	static void setPosition(Vector3f coords);
+	static Vector3f getRotation();
+	static void setRotation(Vector3f coords);
 	static int getHealth();
 	static void setHealth(int health);
 	static int getBreath();
@@ -51,4 +56,7 @@ public:
 	/// <para> This also requires editing the lv2 for the level you want bull to spawn in and changing Ty to the BushPig </para>
 	/// </summary>
 	static void SetBullHardCodeLevel(LevelCode level);
+private:
+	friend class Hooks;
+	static void installHooks();
 };

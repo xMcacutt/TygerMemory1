@@ -19,6 +19,7 @@ bool Core::initialize(HMODULE hModule)
 		Logging::log("Failed to load .exe module.");
 		return false;
 	}
+	Hooks::installAllHooks();
 	Logging::log("TygerMemory Initialized.");
 	return true;
 }

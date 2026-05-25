@@ -10,6 +10,7 @@
 #include <string>
 #include <functional>
 #include "logging.h"
+#include "hooks.h"
 #define WIN32_LEAN_AND_MEAN 
 #include <windows.h>
 

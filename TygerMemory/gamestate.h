@@ -49,6 +49,19 @@ enum class PauseMenuScreen {
 class TYGERMEM GameState
 {
 public:
+	using GoToMainMenuCallback = void(*)();
+	static void addGoToMainMenuListener(GoToMainMenuCallback callback);
+	static void removeGoToMainMenuListener(GoToMainMenuCallback callback);
+	using GameCompleteCallback = void(*)();
+	static void addGameCompleteListener(GameCompleteCallback callback);
+	static void removeGameCompleteListener(GameCompleteCallback callback);
+	using NewGameCallback = void(*)();
+	static void addNewGameListener(NewGameCallback callback);
+	static void removeNewGameListener(NewGameCallback callback);
+	using LoadGameCallback = void(*)();
+	static void addLoadGameListener(NewGameCallback callback);
+	static void removeLoadGameListener(NewGameCallback callback);
+
 	static bool onMainMenu();
 	static bool onLoadScreenOrMainMenu();
 
@@ -78,5 +91,10 @@ public:
 	static void setNoIdle(bool status);
 	static bool getNoIdle();
 	static void setNewGameText(std::string title, std::string bottomTitle, std::string bottomSubtitle);
+private:
+	friend class Hooks;
+	friend void __fastcall talismanCollectedHook(void* thisPtr, void* edx, int id, void* arg);
+	static void onGameComplete();
+	static void installHooks();
 };
 

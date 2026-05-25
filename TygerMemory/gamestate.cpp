@@ -2,6 +2,28 @@
 #include "gamestate.h"
 #include "core.h"
 #include <thread>
+#include "minhook.h"
+
+static Event g_onGameComplete;
+static Event g_onGoToMainMenu;
+static Event g_onNewGame;
+static Event g_onLoadGame;
+
+using GoToMainMenuFunc = void(__fastcall*)(void* thisPtr, void* _edx, int arg);
+GoToMainMenuFunc goToMainMenuOrigin = nullptr;
+
+using MenuStateResetFunc = void(__cdecl*)(int arg1, int arg2);
+MenuStateResetFunc menuStateResetOrigin = nullptr;
+
+void GameState::addGoToMainMenuListener(GoToMainMenuCallback callback)
+{
+    g_onGoToMainMenu.subscribe(callback);
+}
+
+void GameState::removeGoToMainMenuListener(GoToMainMenuCallback callback)
+{
+    g_onGoToMainMenu.unsubscribe(callback);
+}
 
 bool GameState::onMainMenu()
 {
@@ -147,4 +169,67 @@ bool GameState::getNoIdle()
 
 void GameState::setNewGameText(std::string title, std::string bottomTitle, std::string bottomSubtitle)
 {
+}
+
+void GameState::addGameCompleteListener(GameCompleteCallback callback)
+{
+    g_onGameComplete.subscribe(callback);
+}
+
+void GameState::removeGameCompleteListener(GameCompleteCallback callback)
+{
+    g_onGameComplete.unsubscribe(callback);
+}
+
+void GameState::addNewGameListener(NewGameCallback callback)
+{
+	g_onNewGame.subscribe(callback);
+}
+
+void GameState::removeNewGameListener(NewGameCallback callback)
+{
+    g_onNewGame.unsubscribe(callback);
+}
+
+void GameState::addLoadGameListener(LoadGameCallback callback)
+{
+    g_onLoadGame.subscribe(callback);
+}
+
+void GameState::removeLoadGameListener(LoadGameCallback callback)
+{
+    g_onLoadGame.unsubscribe(callback);
+}
+
+void GameState::onGameComplete()
+{
+	g_onGameComplete.invoke();
+}
+
+void __fastcall goToMainMenuHook(void* thisPtr, void* _edx, int arg)
+{
+	if (*(int*)(Core::moduleBase + 0x285b8c) == 0x4)
+        g_onGoToMainMenu.invoke();
+    return goToMainMenuOrigin(thisPtr, _edx, arg);
+}
+
+void __cdecl menuStateResetHook(int arg1, int arg2)
+{
+    if (*(int*)(Core::moduleBase + 0x28DCA0) == 0x9) {
+        if (*(int*)(Core::moduleBase + 0x286640) == 0x1)
+            g_onNewGame.invoke();
+        else
+            g_onLoadGame.invoke();
+    }
+    return menuStateResetOrigin(arg1, arg2);
+}
+
+void GameState::installHooks()
+{
+    void* target = (void*)(Core::moduleBase + 0xfad20);
+    MH_CreateHook(target, &goToMainMenuHook, reinterpret_cast<void**>(&goToMainMenuOrigin));
+    MH_EnableHook(target);
+    target = (void*)(Core::moduleBase + 0x171190);
+	MH_CreateHook(target, &menuStateResetHook, reinterpret_cast<void**>(&menuStateResetOrigin));
+	MH_EnableHook(target);
 }

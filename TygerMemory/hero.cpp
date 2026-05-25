@@ -2,6 +2,21 @@
 #include "core.h"
 #include "hero.h"
 #include "vector3f.h"
+#include "MinHook.h"
+
+using DeathFunc = void(__thiscall*)(void* thisPtr);
+DeathFunc deathOrigin = nullptr;
+static Event g_onDeath;
+
+void Hero::addDeathListener(DeathCallback callback)
+{
+	g_onDeath.subscribe(callback);
+}
+
+void Hero::removeDeathListener(DeathCallback callback)
+{
+	g_onDeath.subscribe(callback);
+}
 
 void Hero::setState(int state)
 {
@@ -31,6 +46,16 @@ void Hero::setPosition(Vector3f coords) {
 
 Vector3f Hero::getPosition() {
 	uintptr_t addr = isBull() ? 0x254268 : 0x270B78;
+	return *(Vector3f*)(Core::moduleBase + addr);
+}
+
+void Hero::setRotation(Vector3f coords) {
+	uintptr_t addr = isBull() ? 0x2545F0 : 0x271C1C;
+	*(Vector3f*)(Core::moduleBase + addr) = coords;
+}
+
+Vector3f Hero::getRotation() {
+	uintptr_t addr = isBull() ? 0x2545F0 : 0x271C1C;
 	return *(Vector3f*)(Core::moduleBase + addr);
 }
 
@@ -177,4 +202,17 @@ void Hero::SetBullHardCodeLevel(LevelCode level)
 	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x1652e4), &level, 1);
 	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x1665f5), &level, 1);
 	Core::SetReadOnlyValue((void*)(Core::moduleBase + 0x16aabc), &level, 1);
+}
+
+void __fastcall deathHook(void* thisPtr, void*)
+{
+	g_onDeath.invoke();
+	deathOrigin(thisPtr);
+}
+
+void Hero::installHooks()
+{
+	void* target = (void*)(Core::moduleBase + 0xf79c0);
+	MH_CreateHook(target, &deathHook, reinterpret_cast<void**>(&deathOrigin));
+	MH_EnableHook(target);
 }

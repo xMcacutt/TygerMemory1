@@ -132,6 +132,7 @@ protected:
 
 public:
 	static SaveDataStruct* GetData();
+	static void Save();
 	
 	/// <summary>
 	/// Simple method for setting a specific fmv's (cutscene) watched status flag.

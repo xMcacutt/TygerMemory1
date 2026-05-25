@@ -17,6 +17,7 @@ private:
 	static int* GameInfoLevelIndexArrayPtr;
 	static int GameInfoLevelCount;
 public:
+	static char getPercentageComplete();
 	static int getCurrentThunderEggCount(TotalType totalType);
 	static int getCurrentCogCount(TotalType totalType);
 	static int getCurrentBilbyCount(TotalType totalType);

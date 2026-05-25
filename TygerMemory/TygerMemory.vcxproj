@@ -70,6 +70,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -92,11 +98,12 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;TYGERMEMORY_EXPORTS;_WINDOWS;_USRDLL;TYGERMEM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;TYGERMEMORY_EXPORTS;_WINDOWS;_USRDLL;TYGERMEM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\admin\source\repos\TygerMemory\vcpkg_installed\x86-windows-static-md\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -104,7 +111,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>..\vcpkg_installed\x86-windows-static-md\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>minhook.x32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(OutputPath)/$(ProjectName).dll" "C:\Program Files (x86)\Steam\steamapps\common\TY the Tasmanian Tiger - Plugin Testing\Plugins\Dependencies\$(ProjectName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -145,17 +157,22 @@
     <ClInclude Include="boomerang.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="camerastate.h" />
+    <ClInclude Include="cheats.h" />
     <ClInclude Include="collectable.h" />
     <ClInclude Include="colour.h" />
     <ClInclude Include="core.h" />
+    <ClInclude Include="event.h" />
+    <ClInclude Include="hooks.h" />
+    <ClInclude Include="lv2.h" />
     <ClInclude Include="minimap.h" />
+    <ClInclude Include="objective.h" />
     <ClInclude Include="sharedEnums.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="gameobject.h" />
+    <ClInclude Include="gameobject_descriptor.h" />
     <ClInclude Include="gamestate.h" />
     <ClInclude Include="hero.h" />
     <ClInclude Include="herostate.h" />
-    <ClInclude Include="instance.h" />
+    <ClInclude Include="gameobject.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="logging.h" />
     <ClInclude Include="pch.h" />
@@ -168,16 +185,20 @@
   <ItemGroup>
     <ClCompile Include="boomerang.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="cheats.cpp" />
     <ClCompile Include="collectable.cpp" />
     <ClCompile Include="core.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="gameobject.cpp" />
+    <ClCompile Include="gameobject_descriptor.cpp" />
     <ClCompile Include="gamestate.cpp" />
     <ClCompile Include="hero.cpp" />
-    <ClCompile Include="instance.cpp" />
+    <ClCompile Include="hooks.cpp" />
+    <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="logging.cpp" />
+    <ClCompile Include="lv2.cpp" />
     <ClCompile Include="minimap.cpp" />
+    <ClCompile Include="objective.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

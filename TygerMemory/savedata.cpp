@@ -29,3 +29,11 @@ SaveDataStruct* SaveData::GetData() {
     }
     return Data;
 }
+
+void SaveData::Save()
+{
+    typedef void (*SaveFunction)();
+    if (GameState::onLoadScreenOrMainMenu())
+        return;
+	((SaveFunction)(Core::moduleBase + 0x170A90))();
+}

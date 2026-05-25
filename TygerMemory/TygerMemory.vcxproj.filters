@@ -47,7 +47,7 @@
     <ClInclude Include="vector3f.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gameobject.h">
+    <ClInclude Include="gameobject_descriptor.h">
       <Filter>Header Files\gameobject</Filter>
     </ClInclude>
     <ClInclude Include="gamestate.h">
@@ -59,7 +59,7 @@
     <ClInclude Include="camerastate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="instance.h">
+    <ClInclude Include="gameobject.h">
       <Filter>Header Files\gameobject</Filter>
     </ClInclude>
     <ClInclude Include="savedata.h">
@@ -89,6 +89,21 @@
     <ClInclude Include="boomerang.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hooks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cheats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="objective.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lv2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -112,7 +127,7 @@
     <ClCompile Include="vector3f.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gameobject.cpp">
+    <ClCompile Include="gameobject_descriptor.cpp">
       <Filter>Source Files\gameobject</Filter>
     </ClCompile>
     <ClCompile Include="gamestate.cpp">
@@ -121,7 +136,7 @@
     <ClCompile Include="camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="instance.cpp">
+    <ClCompile Include="gameobject.cpp">
       <Filter>Source Files\gameobject</Filter>
     </ClCompile>
     <ClCompile Include="savedata.cpp">
@@ -140,6 +155,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="boomerang.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cheats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="objective.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lv2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

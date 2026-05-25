@@ -5,6 +5,12 @@
 #include <algorithm>
 #include <vector>
 
+char Totals::getPercentageComplete() {
+	uintptr_t thisPtr = Core::moduleBase + 0x2888AC;
+	using GetPercentageCompleteFunc = char(__thiscall*)(uintptr_t thisPtr);
+	return ((GetPercentageCompleteFunc)(Core::moduleBase + 0xf7200))(thisPtr);
+}
+
 int Totals::getCurrentThunderEggCount(TotalType totalType)
 {
     auto saveData = SaveData::GetData()->LevelData;
