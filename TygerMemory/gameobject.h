@@ -6,7 +6,7 @@
 #endif
 #include <iostream>
 #include "vector3f.h"
-#include "Instance.h"
+#include "instance.h"
 
 enum class ObjectType {
     MusicalIcicle = 0x26B920,

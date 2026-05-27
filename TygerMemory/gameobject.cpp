@@ -3,7 +3,7 @@
 #include "core.h"
 #include "logging.h"
 #include "vector3f.h"
-#include "GameObject.h"
+#include "gameobject.h"
 
 GameObject::GameObject(uintptr_t addr) { address = addr; }
 
