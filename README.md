@@ -77,3 +77,50 @@ There's plenty of people who would be more than happy to help. We'd also love an
 We'd love any additions to the project. This API will hopefully become large and comprehensive over time with any new findings in Ty's memory being added in. If you find something you need, suggest it to us in the modding discord linked above or make a pull request and it'll be merged.
 
 
+---
+
+## Building from source
+
+TygerMemory builds with CMake (>= 3.21) + Ninja and targets **x86** Windows
+(Ty 1 is a 32-bit process). Three lanes are supported:
+
+### Linux cross-compile (MSVC ABI - matches the released binary)
+
+Requires `clang-cl`, `lld-link` (e.g. from LLVM-MinGW at `/opt/llvm-mingw`),
+and an xwin MSVC sysroot (default `/opt/xwin-sdk`, override with `XWIN_SDK`).
+
+```bash
+cmake --preset clang-cl-xwin-x86-reldbg
+cmake --build build/clang-cl-xwin-x86-reldbg
+```
+
+### Linux cross-compile (LLVM-MinGW)
+
+Requires LLVM-MinGW at `/opt/llvm-mingw` (override `LLVM_MINGW_ROOT`).
+
+```bash
+cmake --preset llvm-mingw-x86-debug
+cmake --build build/llvm-mingw-x86-debug
+```
+
+### Windows (Visual Studio 2022)
+
+From a *Developer Command Prompt for VS - x86*, or via CLion/VS Code CMake
+Tools picking the preset:
+
+```cmd
+cmake --preset msvc-x86-debug
+cmake --build build/msvc-x86-debug
+```
+
+(`clang-cl-x86-debug` uses the clang-cl toolset on Windows instead of MSVC.)
+
+### Verifying drop-in compatibility
+
+`scripts/check-exports.sh` asserts a freshly built DLL still exports every
+symbol the released binary does (run it on an MSVC-ABI build):
+
+```bash
+scripts/check-exports.sh Release/TygerMemory.dll build/clang-cl-xwin-x86-reldbg/TygerMemory.dll
+```
+
