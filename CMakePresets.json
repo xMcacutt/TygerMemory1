@@ -1,0 +1,110 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "clang-cl-xwin-x86-base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/clang-cl-xwin-x86.cmake",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux" },
+            "environment": {
+                "PATH": "/opt/llvm-mingw/bin:$penv{PATH}",
+                "XWIN_SDK": "/opt/xwin-sdk"
+            }
+        },
+        {
+            "name": "clang-cl-xwin-x86-reldbg",
+            "displayName": "Clang-CL + xwin x86 RelWithDebInfo (Linux cross, MSVC ABI)",
+            "inherits": "clang-cl-xwin-x86-base",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "RelWithDebInfo" }
+        },
+        {
+            "name": "llvm-mingw-x86-base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/llvm-mingw-x86.cmake",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux" }
+        },
+        {
+            "name": "llvm-mingw-x86-debug",
+            "displayName": "LLVM-MinGW x86 Debug (Linux cross)",
+            "inherits": "llvm-mingw-x86-base",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+        },
+        {
+            "name": "llvm-mingw-x86-release",
+            "displayName": "LLVM-MinGW x86 Release (Linux cross)",
+            "inherits": "llvm-mingw-x86-base",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+        },
+        {
+            "name": "msvc-x86-base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
+            },
+            "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" },
+            "architecture": { "value": "x86", "strategy": "external" }
+        },
+        {
+            "name": "msvc-x86-debug",
+            "displayName": "MSVC x86 Debug",
+            "inherits": "msvc-x86-base",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+        },
+        {
+            "name": "msvc-x86-release",
+            "displayName": "MSVC x86 Release",
+            "inherits": "msvc-x86-base",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+        },
+        {
+            "name": "clang-cl-x86-base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "clang-cl",
+                "CMAKE_CXX_COMPILER": "clang-cl",
+                "CMAKE_C_FLAGS": "-m32",
+                "CMAKE_CXX_FLAGS": "-m32",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
+            },
+            "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" },
+            "architecture": { "value": "x86", "strategy": "external" }
+        },
+        {
+            "name": "clang-cl-x86-debug",
+            "displayName": "Clang-CL x86 Debug",
+            "inherits": "clang-cl-x86-base",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+        },
+        {
+            "name": "clang-cl-x86-release",
+            "displayName": "Clang-CL x86 Release",
+            "inherits": "clang-cl-x86-base",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+        }
+    ],
+    "buildPresets": [
+        { "name": "clang-cl-xwin-x86-reldbg", "configurePreset": "clang-cl-xwin-x86-reldbg" },
+        { "name": "llvm-mingw-x86-debug", "configurePreset": "llvm-mingw-x86-debug" },
+        { "name": "llvm-mingw-x86-release", "configurePreset": "llvm-mingw-x86-release" },
+        { "name": "msvc-x86-debug", "configurePreset": "msvc-x86-debug", "configuration": "Debug" },
+        { "name": "msvc-x86-release", "configurePreset": "msvc-x86-release", "configuration": "Release" },
+        { "name": "clang-cl-x86-debug", "configurePreset": "clang-cl-x86-debug", "configuration": "Debug" },
+        { "name": "clang-cl-x86-release", "configurePreset": "clang-cl-x86-release", "configuration": "Release" }
+    ]
+}
