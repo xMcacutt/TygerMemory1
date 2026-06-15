@@ -21,6 +21,12 @@
     <Filter Include="Header Files\savedata">
       <UniqueIdentifier>{5c5feb7b-2edc-4e7d-b8ff-be23f4888a0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\model">
+      <UniqueIdentifier>{8c4a1e1b-e518-4ec0-ab13-318e331603c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\model">
+      <UniqueIdentifier>{0e5c53bf-ba09-468d-940b-7f936655f06a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -89,6 +95,18 @@
     <ClInclude Include="boomerang.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="material.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
     <ClInclude Include="event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -156,6 +174,18 @@
     </ClCompile>
     <ClCompile Include="boomerang.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="model.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="material.cpp">
+      <Filter>Source Files\model</Filter>
     </ClCompile>
     <ClCompile Include="hooks.cpp">
       <Filter>Source Files</Filter>
