@@ -1,206 +1,204 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Source Files\gameobject">
-      <UniqueIdentifier>{63e35342-42a0-471b-b9a6-6d30cc5f9caf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gameobject">
-      <UniqueIdentifier>{14b6ed62-dbc7-438b-88c8-4f5414b79b84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\savedata">
-      <UniqueIdentifier>{102ec8a5-6f38-4586-b97a-4d7cc7a0472a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\savedata">
-      <UniqueIdentifier>{5c5feb7b-2edc-4e7d-b8ff-be23f4888a0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\model">
-      <UniqueIdentifier>{8c4a1e1b-e518-4ec0-ab13-318e331603c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\model">
-      <UniqueIdentifier>{0e5c53bf-ba09-468d-940b-7f936655f06a}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="logging.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="herostate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="hero.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="level.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vector3f.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gameobject_descriptor.h">
-      <Filter>Header Files\gameobject</Filter>
-    </ClInclude>
-    <ClInclude Include="gamestate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camerastate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gameobject.h">
-      <Filter>Header Files\gameobject</Filter>
-    </ClInclude>
-    <ClInclude Include="savedata.h">
-      <Filter>Header Files\savedata</Filter>
-    </ClInclude>
-    <ClInclude Include="totals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="collectable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sharedEnums.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="minimap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vector4f.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="colour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="boomerang.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="model.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="matrix.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="animation.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="material.h">
-      <Filter>Header Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="hooks.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cheats.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objective.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lv2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="core.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="core.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="camera.cpp">
+      <Filter>Camera</Filter>
     </ClCompile>
     <ClCompile Include="hero.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="logging.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vector3f.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gameobject_descriptor.cpp">
-      <Filter>Source Files\gameobject</Filter>
-    </ClCompile>
-    <ClCompile Include="gamestate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gameobject.cpp">
-      <Filter>Source Files\gameobject</Filter>
-    </ClCompile>
-    <ClCompile Include="savedata.cpp">
-      <Filter>Source Files\savedata</Filter>
-    </ClCompile>
-    <ClCompile Include="totals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sound.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="collectable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="minimap.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Hero</Filter>
     </ClCompile>
     <ClCompile Include="boomerang.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Hero</Filter>
     </ClCompile>
-    <ClCompile Include="matrix.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="model.cpp">
-      <Filter>Source Files\model</Filter>
+    <ClCompile Include="vector3f.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
     <ClCompile Include="animation.cpp">
-      <Filter>Source Files\model</Filter>
+      <Filter>Model</Filter>
     </ClCompile>
     <ClCompile Include="material.cpp">
-      <Filter>Source Files\model</Filter>
+      <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="hooks.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="model.cpp">
+      <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="cheats.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="gameobject.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="objective.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="gameobject_descriptor.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="lv2.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="matrix.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="logging.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="collectable.cpp">
+      <Filter>Collectible</Filter>
+    </ClCompile>
+    <ClCompile Include="totals.cpp">
+      <Filter>Collectible</Filter>
+    </ClCompile>
+    <ClCompile Include="savedata.cpp">
+      <Filter>SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="gamestate.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="objective.cpp">
+      <Filter>Objective</Filter>
+    </ClCompile>
+    <ClCompile Include="level.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="cheats.cpp">
+      <Filter>Cheat</Filter>
+    </ClCompile>
+    <ClCompile Include="minimap.cpp">
+      <Filter>Minimap</Filter>
+    </ClCompile>
+    <ClCompile Include="sound.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="camerastate.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="hero.h">
+      <Filter>Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="herostate.h">
+      <Filter>Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="boomerang.h">
+      <Filter>Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="vector4f.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="vector3f.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="colour.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="sharedEnums.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="material.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="gameobject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="gameobject_descriptor.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="lv2.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="logging.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="hooks.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="collectable.h">
+      <Filter>Collectible</Filter>
+    </ClInclude>
+    <ClInclude Include="totals.h">
+      <Filter>Collectible</Filter>
+    </ClInclude>
+    <ClInclude Include="savedata.h">
+      <Filter>SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="gamestate.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="objective.h">
+      <Filter>Objective</Filter>
+    </ClInclude>
+    <ClInclude Include="level.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="cheats.h">
+      <Filter>Cheat</Filter>
+    </ClInclude>
+    <ClInclude Include="minimap.h">
+      <Filter>Minimap</Filter>
+    </ClInclude>
+    <ClInclude Include="sound.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{ad5eb1bd-3e9f-44db-adac-0131259c0ac8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hero">
+      <UniqueIdentifier>{e37dde08-5b1e-4f85-b05e-ca20fbb3497e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{e7fca9a0-e9f7-46a9-8bef-ebfa489db7ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{3cd1d748-65a3-46ec-898a-a7ed54c2260c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{e290eb21-35d0-44b9-a7f8-1d742fe98908}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collectible">
+      <UniqueIdentifier>{842dc30e-e652-4831-a7de-2972b1ecc8c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SaveData">
+      <UniqueIdentifier>{d624a61e-cd73-4106-8e19-ff456651825e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameState">
+      <UniqueIdentifier>{04dcc5a1-c569-46d1-a7df-e92d5b51f42b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objective">
+      <UniqueIdentifier>{630cc079-5306-4d6f-b9ac-277030c92c29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cheat">
+      <UniqueIdentifier>{71c40f08-88ec-4870-ad11-603326d94814}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Minimap">
+      <UniqueIdentifier>{0c85c605-8edb-4523-8740-d42538016a1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{0a40fb2b-35ae-4f8c-8829-4a6fdf7578ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
