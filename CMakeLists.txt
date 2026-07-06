@@ -5,6 +5,7 @@ project("TygerMemory" LANGUAGES C CXX)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(CompileOptions)
 include(SimpleGitVersion)
+include(MinHook)
 
 # Build the DLL from every .cpp under TygerMemory/. dllmain.cpp (the DLL entry point) and
 # pch.cpp are intentionally included: this is the TygerMemory DLL itself, not a vendored
@@ -15,6 +16,8 @@ add_library(TygerMemory SHARED ${TYGERMEMORY_SOURCES})
 add_library(tygermemory::tygermemory ALIAS TygerMemory)
 
 target_include_directories(TygerMemory PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/TygerMemory")
+
+target_link_libraries(TygerMemory PUBLIC minhook::minhook)
 
 # Export decoration. The class headers gate __declspec(dllexport) on TYGERMEM_EXPORTS.
 # Define TYGERMEM_EXPORTS / TYGERMEMORY_EXPORTS / _WINDOWS / _USRDLL consistently for the DLL build.
